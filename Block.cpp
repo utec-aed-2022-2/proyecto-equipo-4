@@ -8,10 +8,10 @@
 #include <ctime>
 
 template<typename T>
-Block<T>::Block(int id, int size, std::string& parent_hash) {
+Block<T>::Block(int id, int size, T* registers, std::string& parent_hash) {
     this->size = size;
     this->id = id;
-    this->registers = new T[size];
+    this->registers = registers;
     this->parent_hash = parent_hash;
     this->created_time = _get_time();
     this->hash = _calculate_hash();

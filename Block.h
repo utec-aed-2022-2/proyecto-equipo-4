@@ -18,7 +18,7 @@ private:
     std::string parent_hash;
     std::string hash;
 public:
-    Block(int id, int size, std::string& parent_hash);
+    Block(int id, int size, T* registers, std::string& parent_hash);
 private:
     std::string _get_time();
     std::string _hash_block();
