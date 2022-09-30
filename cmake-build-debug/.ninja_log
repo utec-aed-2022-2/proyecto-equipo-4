@@ -1,0 +1,5 @@
+# ninja log v5
+362	480	1664567747333370534	proyecto_equipo_4	e38048c1733df0ad
+0	22	1664567908608114488	build.ninja	248b892fea318e7a
+16	289	1664567141525857177	CMakeFiles/proyecto_equipo_4.dir/sha256.cpp.o	d8ef51210189eb6c
+11	362	1664567747217390097	CMakeFiles/proyecto_equipo_4.dir/main.cpp.o	82fcc316fbc7fda2
