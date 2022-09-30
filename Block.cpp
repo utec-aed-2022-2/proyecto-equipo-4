@@ -14,6 +14,7 @@ Block<T>::Block(int id, int size, std::string& parent_hash) {
     this->registers = new T[size];
     this->parent_hash = parent_hash;
     this->created_time = _get_time();
+    this->hash = _calculate_hash();
 }
 
 template<typename T>
@@ -25,11 +26,30 @@ std::string Block<T>::_get_time() {
 }
 
 template<typename T>
-void Block<T>::_hash_block() {
+std::string Block<T>::_hash_block() {
     SHA256 hasher;
     hasher.add(id, sizeof(int));
     hasher.add((char*)parent_hash, sizeof(std::string));
     hasher.add((char*)created_time, sizeof(std::string));
     hasher.add(registers, sizeof(T)*size);
-    this->hash = hasher.getHash();
+    return hasher.getHash();
+}
+
+template<typename T>
+std::string Block<T>::_calculate_hash() {
+    SHA256 hasher;
+    char *t_hash = _hash_block();
+    this->nonce = 0;
+    do {
+        this->nonce++;
+        hasher.reset();
+        hasher.add(t_hash, sizeof(std::string));
+        hasher.add(this->nonce, sizeof(int));
+    }while (!_verify_hash(hasher.getHash()));
+    return hasher.getHash();
+}
+
+template<typename T>
+bool Block<T>::_verify_hash(std::string hash_v) {
+    return (hash_v.at(0) == '0' && hash_v.at(1) == '0' && hash_v.at(2) == '0');
 }

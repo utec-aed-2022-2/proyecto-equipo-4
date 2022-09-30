@@ -21,8 +21,9 @@ public:
     Block(int id, int size, std::string& parent_hash);
 private:
     std::string _get_time();
-    void _hash_block();
-    void _calculate_hash();
+    std::string _hash_block();
+    std::string _calculate_hash();
+    bool _verify_hash(std::string hash_v);
 };
 
 #endif //PROYECTO_EQUIPO_4_BLOCK_H
