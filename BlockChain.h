@@ -16,7 +16,8 @@ private:
     int block_size;
 public:
     T searchRegister(std::function<bool(T)> &f);
-
+    T insertRegister(T data);
+    
 };
 
 

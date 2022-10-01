@@ -16,6 +16,14 @@ Block<T>::Block(int id, int size, T* registers, std::string& parent_hash) {
     this->created_time = _get_time();
     this->hash = _calculate_hash();
 }
+template<typename T>
+Block<T>::Block(int id, int size, std::string& parent_hash) {
+    this->size = size;
+    this->id = id;
+    this->parent_hash = parent_hash;
+    this->created_time = _get_time();
+    this->hash = _calculate_hash();
+}
 
 template<typename T>
 std::string Block<T>::_get_time() {
@@ -47,4 +55,19 @@ std::string Block<T>::_calculate_hash() {
 template<typename T>
 bool Block<T>::_verify_hash(std::string hash_v) {
     return (hash_v.at(0) == '0' && hash_v.at(1) == '0' && hash_v.at(2) == '0');
+}
+
+template<typename T>
+int Block<T>::_get_size(){
+    return size;
+}
+
+template<typename T>
+int Block<T>::_get_id(){
+    return id;
+}
+
+template<typename T>
+int Block<T>::_get_hash(){
+    return id;
 }
