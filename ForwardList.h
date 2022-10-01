@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "Node.h"
-#include "list.h"
+#include "List.h"
 
 
 template <typename T>

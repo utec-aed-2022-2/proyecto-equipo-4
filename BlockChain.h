@@ -6,13 +6,13 @@
 #define PROYECTO_EQUIPO_4_BLOCKCHAIN_H
 
 #include <functional>
-#include "ForwardList.h"
+#include "ChainHash.h"
 #include "Block.h"
 
 template<typename T>
 class BlockChain {
 private:
-    ForwardList<Block<T>> blockchain;
+    ChainHash<std::string, Block<T>> blockchain;
     int block_size;
 public:
     T searchRegister(std::function<bool(T)> &f);

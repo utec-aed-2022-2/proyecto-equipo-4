@@ -1,8 +1,10 @@
 # ninja log v5
-362	480	1664567747333370534	proyecto_equipo_4	e38048c1733df0ad
-0	22	1664567908608114488	build.ninja	248b892fea318e7a
-16	289	1664567141525857177	CMakeFiles/proyecto_equipo_4.dir/sha256.cpp.o	d8ef51210189eb6c
-11	362	1664567747217390097	CMakeFiles/proyecto_equipo_4.dir/main.cpp.o	82fcc316fbc7fda2
+300	390	1664660932534675472	proyecto_equipo_4	beac717dac18dd99
+0	22	1664661519303407220	build.ninja	248b892fea318e7a
+1	300	1664660932442670871	CMakeFiles/proyecto_equipo_4.dir/sha256.cpp.o	d8ef51210189eb6c
+0	384	1664660754177787783	CMakeFiles/proyecto_equipo_4.dir/BlockChain.cpp.o	970367dc5ebc008f
 0	290	1664577491357286939	CMakeFiles/proyecto_equipo_4.dir/main.cpp.o	82fcc316fbc7fda2
-0	206	1664578337837874856	CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o	c89e42f55d655f9b
-207	310	1664578337937762149	proyecto_equipo_4	ab27c7e6954f2b82
+0	278	1664660674173841055	CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o	c89e42f55d655f9b
+0	444	1664662069270692696	CMakeFiles/proyecto_equipo_4.dir/BlockChain.cpp.o	970367dc5ebc008f
+1	459	1664662069286693910	CMakeFiles/proyecto_equipo_4.dir/ChainHash.cpp.o	c649f2a70d0f8698
+459	569	1664662069394702105	proyecto_equipo_4	e5fd384e7987a4bb

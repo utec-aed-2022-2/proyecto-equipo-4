@@ -67,6 +67,18 @@ build CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o: CXX_COMPILER__proyecto_equip
   OBJECT_DIR = CMakeFiles/proyecto_equipo_4.dir
   OBJECT_FILE_DIR = CMakeFiles/proyecto_equipo_4.dir
 
+build CMakeFiles/proyecto_equipo_4.dir/BlockChain.cpp.o: CXX_COMPILER__proyecto_equipo_4_Debug /home/juaquin/Documentos/UTEC/Ciclo4/AED/proyecto-equipo-4/BlockChain.cpp || cmake_object_order_depends_target_proyecto_equipo_4
+  DEP_FILE = CMakeFiles/proyecto_equipo_4.dir/BlockChain.cpp.o.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/proyecto_equipo_4.dir
+  OBJECT_FILE_DIR = CMakeFiles/proyecto_equipo_4.dir
+
+build CMakeFiles/proyecto_equipo_4.dir/ChainHash.cpp.o: CXX_COMPILER__proyecto_equipo_4_Debug /home/juaquin/Documentos/UTEC/Ciclo4/AED/proyecto-equipo-4/ChainHash.cpp || cmake_object_order_depends_target_proyecto_equipo_4
+  DEP_FILE = CMakeFiles/proyecto_equipo_4.dir/ChainHash.cpp.o.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/proyecto_equipo_4.dir
+  OBJECT_FILE_DIR = CMakeFiles/proyecto_equipo_4.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target proyecto_equipo_4
@@ -75,7 +87,7 @@ build CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o: CXX_COMPILER__proyecto_equip
 #############################################
 # Link the executable proyecto_equipo_4
 
-build proyecto_equipo_4: CXX_EXECUTABLE_LINKER__proyecto_equipo_4_Debug CMakeFiles/proyecto_equipo_4.dir/main.cpp.o CMakeFiles/proyecto_equipo_4.dir/sha256.cpp.o CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o
+build proyecto_equipo_4: CXX_EXECUTABLE_LINKER__proyecto_equipo_4_Debug CMakeFiles/proyecto_equipo_4.dir/main.cpp.o CMakeFiles/proyecto_equipo_4.dir/sha256.cpp.o CMakeFiles/proyecto_equipo_4.dir/Block.cpp.o CMakeFiles/proyecto_equipo_4.dir/BlockChain.cpp.o CMakeFiles/proyecto_equipo_4.dir/ChainHash.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/proyecto_equipo_4.dir
   POST_BUILD = :
