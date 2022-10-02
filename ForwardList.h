@@ -150,7 +150,7 @@ public:
     }
 
     T& operator[](int pos){
-        if (!(0 <= pos < nodes)) {
+        if (0 <= pos >= nodes) {
             throw ("Posicion fuera de rango");
         }
         Node<T>* t = head;

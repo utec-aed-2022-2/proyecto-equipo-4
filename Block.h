@@ -53,20 +53,20 @@ std::string Block<T>::_get_time() {
 
 template<typename T>
 std::string Block<T>::_hash_block() {
-    SHA256 hasher;
-    return hasher(std::to_string(id) + parent_hash + created_time + _hash_registers());
+    SHA256 sha256;
+    return sha256(std::to_string(id) + parent_hash + created_time + _hash_registers());
 }
 
 template<typename T>
 std::string Block<T>::_calculate_hash() {
-    SHA256 hasher;
+    SHA256 sha256;
     std::string t_hash = _hash_block();
     this->nonce = 0;
     do {
         this->nonce++;
-        hasher(t_hash + std::to_string(this->nonce));
-    }while (!_verify_hash(hasher.getHash()));
-    return hasher.getHash();
+        sha256(t_hash + std::to_string(this->nonce));
+    }while (!_verify_hash(sha256.getHash()));
+    return sha256.getHash();
 }
 
 template<typename T>
