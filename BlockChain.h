@@ -12,7 +12,7 @@
 template<typename T>
 class BlockChain {
 private:
-    ChainHash<std::string, Block<T>> blockchain;
+    ChainHash<int, Block<T>> blockchain;
     int block_size;
 public:
     T searchRegister(std::function<bool(T)> &f);

@@ -31,10 +31,10 @@ T BlockChain<T>::insertRegister(T data)
     }
     auto parent = it;
     auto child = it->next;
-    if (child._get_size() == block_size)
+    if (child.get_size() == block_size)
     {
         T*n_register = new T(block_size);
-        Block<T> n_block = Block<T>(parent._get_id(), block_size, n_register, parent._get_hash());
+        Block<T> n_block = Block<T>(parent.get_id(), block_size, n_register, parent.get_hash());
         blockchain.push_back(n_block);
     }
     else
