@@ -5,37 +5,44 @@
 #ifndef PROYECTO_EQUIPO_4_BLOCK_H
 #define PROYECTO_EQUIPO_4_BLOCK_H
 
-#include <string>
-#include <iostream>
 #include "sha256.h"
+#include <iostream>
 #include <chrono>
 #include <ctime>
 
-template <typename T>
+template<typename T>
 class Block {
 private:
     int id;
     int nonce;
     int size;
-    T* registers;
+    T *registers;
     std::string created_time;
     std::string hash;
-    const std::string& parent_hash;
+    const std::string &parent_hash;
 public:
-    Block(const int &id, const int &size, T* registers, std::string& parent_hash);
+    Block(const int &id, const int &size, T *registers, std::string &parent_hash);
+
     int get_size();
+
     int get_id();
+
     std::string get_hash();
+
 private:
     std::string _get_time();
+
     std::string _hash_block();
+
     std::string _calculate_hash();
-    bool _verify_hash(std::string hash_v);
+
+    bool _verify_hash(const std::string &hash_v);
+
     std::string _hash_registers();
 };
 
 template<typename T>
-Block<T>::Block(const int &id, const int &size, T* registers, std::string& parent_hash): parent_hash(parent_hash) {
+Block<T>::Block(const int &id, const int &size, T *registers, std::string &parent_hash): parent_hash(parent_hash) {
     this->size = size;
     this->id = id;
     this->registers = registers;
@@ -65,27 +72,27 @@ std::string Block<T>::_calculate_hash() {
     do {
         this->nonce++;
         sha256(t_hash + std::to_string(this->nonce));
-    }while (!_verify_hash(sha256.getHash()));
+    } while (!_verify_hash(sha256.getHash()));
     return sha256.getHash();
 }
 
 template<typename T>
-bool Block<T>::_verify_hash(std::string hash_v) {
+bool Block<T>::_verify_hash(const std::string &hash_v) {
     return (hash_v.at(0) == '0' && hash_v.at(1) == '0' && hash_v.at(2) == '0');
 }
 
 template<typename T>
-int Block<T>::get_size(){
+int Block<T>::get_size() {
     return size;
 }
 
 template<typename T>
-int Block<T>::get_id(){
+int Block<T>::get_id() {
     return id;
 }
 
 template<typename T>
-std::string Block<T>::get_hash(){
+std::string Block<T>::get_hash() {
     return this->hash;
 }
 
@@ -93,7 +100,7 @@ template<typename T>
 std::string Block<T>::_hash_registers() {
     SHA256 sha256;
     auto it = this->registers;
-    for (int i = 0; i<size; i++){
+    for (int i = 0; i < size; i++) {
         sha256.add(it, sizeof(T));
         it++;
     }
