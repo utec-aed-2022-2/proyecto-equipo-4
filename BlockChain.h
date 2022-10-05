@@ -12,10 +12,18 @@
 template<typename T>
 class BlockChain {
 private:
+    T* b_block;
+    int c;
     ChainHash<int, Block<T>> blockchain;
     int block_size;
     int last_id;
 public:
+    BlockChain(int block_size){
+        b_block = new T[block_size];
+        c = 0;
+        last_id = 0;
+    }
+
     T searchRegister(std::function<bool(T)> &f, int &idBlock, int &posRegister);
 
     void updateRegister(int idBlock, int posRegister, T newRegister);
@@ -63,17 +71,13 @@ void BlockChain<T>::updateRegister(int idBlock, int posRegister, T newRegister)
 template <typename T>
 T BlockChain<T>::insertRegister(T data)
 {
-    auto last_block = blockchain.get(last_id);
-    if (last_block.get_size() == block_size)
-    {
-        T *n_register = new T(block_size);
-        n_register[0] = data;
-        Block<T> n_block = Block<T>(last_block.get_id(), block_size, n_register, last_block.get_hash());
-        blockchain.insert(last_block.get_id() + 1, n_register);
-    }
-    else
-    {
-        blockchain.get(last_id)[blockchain.get(last_id).get_size()] = data;
+    b_block[c] = data;
+    c++;
+    if (c == block_size){
+        Block<T> n_block = Block<T>(last_id, block_size, b_block, "");
+        blockchain.insert(last_id, n_block);
+        last_id++;
+        c = 0;
     }
 }
 
