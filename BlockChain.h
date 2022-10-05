@@ -24,9 +24,9 @@ public:
         last_id = 0;
     }
 
-    T searchRegister(std::function<bool(T)> &f, int &idBlock, int &posRegister);
+    T searchRegister(std::function<bool(T)> &f, int &id_block, int &pos_register);
 
-    void updateRegister(int idBlock, int posRegister, T newRegister);
+    void updateRegister(int id_block, int pos_register, T new_register);
 
     T insertRegister(T data);
 
@@ -44,18 +44,18 @@ void BlockChain<T>::_rehash_block(const int &id) {
 }
 
 template <typename T>
-T BlockChain<T>::searchRegister(std::function<bool(T)> &f, int &idBlock, int &posRegister)
+T BlockChain<T>::searchRegister(std::function<bool(T)> &f, int &id_block, int &pos_register)
 {
     for (int i = 0; i < blockchain.bucket_count(); ++i)
     {
-        Block<T> block = blockchain->array[i].front()->value;
+        Block<T> block = blockchain.get(i);
         for(int j = 0; j < block_size; ++j)
         {
-            if(f(block->registers[j]))
+            if(f(block.at(j)))
             {
-                idBlock = i;
-                posRegister = j;
-                return block->registers[j];
+                id_block = i;
+                pos_register = j;
+                return block.at(j);
             }
         }
     }
@@ -63,12 +63,13 @@ T BlockChain<T>::searchRegister(std::function<bool(T)> &f, int &idBlock, int &po
 }
 
 template <typename T>
-void BlockChain<T>::updateRegister(int idBlock, int posRegister, T newRegister) {
-    Block<T>& block = blockchain.get(idBlock);
-    block.at(posRegister) = newRegister;
+void BlockChain<T>::updateRegister(int id_block, int pos_register, T new_register) {
+    Block<T>& block = blockchain.get(id_block);
+    block.at(pos_register) = new_register;
     block.recalculate_hash();
-    while(idBlock++ < last_id) {
-        blockchain.get(idBlock).recalculate_hash();
+    while(id_block++ < last_id)
+    {
+        blockchain.get(id_block).recalculate_hash();
     }
 }
 
