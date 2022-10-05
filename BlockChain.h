@@ -14,10 +14,11 @@ class BlockChain {
 private:
     ChainHash<int, Block<T>> blockchain;
     int block_size;
+    int last_id;
 public:
     T searchRegister(std::function<bool(T)> &f);
     T insertRegister(T data);
-
+    int get_last_id();
 private:
     void _rehash_block(const int &id);
 };
