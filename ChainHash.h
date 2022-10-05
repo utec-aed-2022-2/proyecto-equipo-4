@@ -41,7 +41,7 @@ public:
 
     bool insert(TK key, TV value);
 
-    TV get(TK key);
+    TV& get(TK key);
 
     void rehashing();
 
@@ -101,7 +101,7 @@ bool ChainHash<TK, TV>::insert(TK key, TV value) {
 }
 
 template<typename TK, typename TV>
-TV ChainHash<TK, TV>::get(TK key) {
+TV& ChainHash<TK, TV>::get(TK key) {
     size_t hashcode = getHash(key);
     int index = hashcode % capacity;
     //TODO: iterar en la lista array[index]
@@ -110,7 +110,7 @@ TV ChainHash<TK, TV>::get(TK key) {
             return it->value;
         }
     }
-    return {};
+    throw ("No existe la clave");
 }
 
 template<typename TK, typename TV>

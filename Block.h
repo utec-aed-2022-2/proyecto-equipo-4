@@ -33,6 +33,7 @@ public:
 
     void recalculate_hash();
 
+    T& at(const int& index);
 private:
     std::string _get_time();
 
@@ -114,6 +115,12 @@ std::string Block<T>::_hash_registers() {
 template<typename T>
 void Block<T>::recalculate_hash() {
     this->hash = this->_calculate_hash();
+}
+
+template<typename T>
+T &Block<T>::at(const int &index) {
+    if (index < 0 || index >= size) throw ("Indice fuera de rango");
+    return registers[index];
 }
 
 #endif //PROYECTO_EQUIPO_4_BLOCK_H

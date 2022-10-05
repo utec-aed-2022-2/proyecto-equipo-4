@@ -63,9 +63,13 @@ T BlockChain<T>::searchRegister(std::function<bool(T)> &f, int &idBlock, int &po
 }
 
 template <typename T>
-void BlockChain<T>::updateRegister(int idBlock, int posRegister, T newRegister)
-{
-    blockchain->array[idBlock].front()->value->registers[posRegister] = newRegister;
+void BlockChain<T>::updateRegister(int idBlock, int posRegister, T newRegister) {
+    Block<T>& block = blockchain.get(idBlock);
+    block.at(posRegister) = newRegister;
+    block.recalculate_hash();
+    while(idBlock++ < last_id) {
+        blockchain.get(idBlock).recalculate_hash();
+    }
 }
 
 template <typename T>
