@@ -17,8 +17,19 @@ private:
 public:
     T searchRegister(std::function<bool(T)> &f);
     T insertRegister(T data);
-    
+
+private:
+    void _rehash_block(const int &id);
 };
+
+template<typename T>
+void BlockChain<T>::_rehash_block(const int &id) {
+    auto block = blockchain.get(id);
+    if (block.get_id() != id) return;
+    block.recalculate_hash();
+    _rehash_block(id+1);
+}
+
 
 
 #endif //PROYECTO_EQUIPO_4_BLOCKCHAIN_H

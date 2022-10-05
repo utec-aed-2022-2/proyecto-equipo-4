@@ -21,6 +21,8 @@ private:
     std::string hash;
     const std::string &parent_hash;
 public:
+    Block() = default;
+
     Block(const int &id, const int &size, T *registers, std::string &parent_hash);
 
     int get_size();
@@ -28,6 +30,8 @@ public:
     int get_id();
 
     std::string get_hash();
+
+    void recalculate_hash();
 
 private:
     std::string _get_time();
@@ -105,6 +109,11 @@ std::string Block<T>::_hash_registers() {
         it++;
     }
     return sha256.getHash();
+}
+
+template<typename T>
+void Block<T>::recalculate_hash() {
+    this->hash = this->_calculate_hash();
 }
 
 #endif //PROYECTO_EQUIPO_4_BLOCK_H
