@@ -34,6 +34,8 @@ public:
     void recalculate_hash();
 
     T& at(const int& index);
+
+    void print();
 private:
     std::string _get_time();
 
@@ -121,6 +123,19 @@ template<typename T>
 T &Block<T>::at(const int &index) {
     if (index < 0 || index >= size) throw ("Indice fuera de rango");
     return registers[index];
+}
+
+template<typename T>
+void Block<T>::print() {
+    std::cout << "Created time: "<< this->created_time << std::endl;
+    std::cout << "id: " << this->id << std::endl;
+    std::cout << "nonce: " << this->nonce << std::endl;
+    std::cout << "hash: " << this->hash << std::endl;
+    std::cout << "parent hash: " << this->parent_hash << std::endl;
+    std::cout << "Registers:" << std::endl;
+    for (int i=0; i<size; i++){
+        std::cout << '\t' <<this->registers[i] << std::endl;
+    }
 }
 
 #endif //PROYECTO_EQUIPO_4_BLOCK_H

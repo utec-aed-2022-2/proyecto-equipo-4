@@ -8,9 +8,7 @@ void test_block(){
     std::string parent0 = sha256.getHash();
     std::string regis[] = {"juaquin", "remon", "flores"};
     Block<std::string> b(1, 3, regis, parent0);
-    std::cout << b.get_id() << std::endl;
-    std::cout << b.get_size() << std::endl;
-    std::cout << b.get_hash() << std::endl;
+    b.print();
 }
 
 int main()
