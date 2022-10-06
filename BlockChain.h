@@ -46,12 +46,13 @@ void BlockChain<T>::_rehash_block(const int &id) {
 template <typename T>
 T BlockChain<T>::searchRegister(std::function<bool(T)> &f, int &id_block, int &pos_register)
 {
-    for (int i = 0; i < blockchain.bucket_count(); ++i)
+    for (int i = 0; i < last_id; ++i)
     {
         Block<T> block = blockchain.get(i);
         for(int j = 0; j < block_size; ++j)
         {
-            if(f(block.at(j)))
+            const int tmp_register = block.at(j);
+            if(f(tmp_register))
             {
                 id_block = i;
                 pos_register = j;
