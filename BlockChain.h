@@ -82,8 +82,15 @@ void BlockChain<T>::insertRegister(T data)
     b_block[c] = data;
     c++;
     if (c == block_size){
-        Block<T>* n_block = new Block<T>(last_id, block_size, b_block, genesis);
-        blockchain.insert(last_id, n_block);
+        if (last_id != 0){
+            auto x = (blockchain.get(last_id))->get_hash();
+            Block<T>* n_block = new Block<T>(last_id, block_size, b_block, x);
+            blockchain.insert(last_id, n_block);
+        }else{
+
+            Block<T>* n_block = new Block<T>(last_id, block_size, b_block, this->genesis);
+            blockchain.insert(last_id, n_block);
+        }
         last_id++;
         c = 0;
     }
