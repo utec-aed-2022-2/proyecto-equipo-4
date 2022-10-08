@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 const float maxFillFactor = 0.5;
 const int maxCollision = 3;
 
@@ -81,7 +82,7 @@ bool ChainHash<TK, TV>::insert(TK key, TV value) {
     int index = hashcode % capacity;
     //TODO: evaluar si la llave existe
 
-    int ts = distance(array[index].begin(), array[index].end());
+    int ts = array[index].size();
 
     if (ts == maxCollision) {
         rehashing();

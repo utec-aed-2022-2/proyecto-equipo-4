@@ -9,12 +9,34 @@
 #include "Node.h"
 #include "List.h"
 
-
 template <typename T>
 class ForwardList : public List<T> {
 private:
     Node<T>* head = nullptr;
     int nodes;
+    struct iterator{
+        Node<T> *current;
+        iterator(Node<T>*current):current(current){};
+        iterator& operator++(){
+            if(current!= nullptr)
+                current = current -> next;
+            return *this;
+        }
+
+        iterator& operator++(int){
+            if(current!= nullptr)
+                current = current -> next;
+            return *this;
+        }
+
+        bool operator!=(const iterator& other){
+            return this->current!=other.current;
+        }
+
+        T* operator->(){
+            return &current->data;
+        }
+    };
 public:
     ForwardList() : head(nullptr), nodes(0){}
 
@@ -22,11 +44,18 @@ public:
         clear();
     }
 
+    iterator begin(){
+        return iterator(head);
+    }
+
+    iterator end(){
+        return iterator(nullptr);
+    }
     T front(){
         if (head != nullptr){
             return head->data;
         }else{
-            throw("No hay elementos en la lista");
+            throw ("No hay elementos en la lista");
         }
     }
 
@@ -38,20 +67,15 @@ public:
             }
             return temp->data;
         }else{
-            throw("No hay elementos en la lista");
+            throw ("No hay elementos en la lista");
 
         }
     }
 
     void push_front(T data){
-        Node<T>* nodo = new Node<T>;
-        nodo->data = data;
+        Node<T>* nodo = new Node<T>(data);
         nodo->next = head;
-        if(is_empty()){
-            head = nodo;
-        }else{
-            head = nodo;
-        }
+        head = nodo;
         nodes++;
     }
 
@@ -73,7 +97,7 @@ public:
 
     T pop_front(){
         if (is_empty()){
-            throw("No hay elementos en la lista");
+            throw ("No hay elementos en la lista");
         }
         T value = front();
         if (nodes == 1){
@@ -89,10 +113,10 @@ public:
     }
 
     T pop_back(){
-        T value = back();
         if(nodes == 0){
-            return 0;
+            throw ("No hay elementos");
         }
+        T value = back();
         if(head->next == nullptr){
             delete head;
             head = nullptr;
@@ -128,7 +152,7 @@ public:
         nodo->next = temp->next;
         temp->next = nodo;
         nodes++;
-        return 0;
+        return data;
     }
 
     bool remove(int pos){
@@ -176,5 +200,6 @@ public:
         nodes = 0;
     }
 };
+
 
 #endif //PROYECTO_EQUIPO_4_FORWARDLIST_H

@@ -23,10 +23,6 @@ public:
     virtual bool is_empty() = 0;
     virtual int size() = 0;
     virtual void clear() = 0;
-    virtual void sort() = 0;
-    virtual bool is_sorted() = 0;
-    virtual void reverse() = 0;
-    virtual std::string name() = 0;
 };
 
 
