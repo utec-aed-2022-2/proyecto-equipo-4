@@ -7,8 +7,6 @@
 
 #include "sha256.h"
 #include <iostream>
-#include <chrono>
-#include <ctime>
 
 template<typename T>
 class Block {
@@ -17,7 +15,6 @@ private:
     int nonce;
     int size;
     T *registers;
-    std::string created_time;
     std::string hash;
     const std::string &parent_hash;
 public:
@@ -33,11 +30,11 @@ public:
 
     void recalculate_hash();
 
-    T& at(const int& index);
+    T &at(const int &index);
 
     void print();
+
 private:
-    std::string _get_time();
 
     std::string _hash_block();
 
@@ -53,22 +50,13 @@ Block<T>::Block(const int &id, const int &size, T *registers, std::string &paren
     this->size = size;
     this->id = id;
     this->registers = registers;
-    this->created_time = _get_time();
     this->hash = _calculate_hash();
-}
-
-template<typename T>
-std::string Block<T>::_get_time() {
-    auto now = std::chrono::system_clock::now();
-    std::time_t end_time = std::chrono::system_clock::to_time_t(now);
-    std::string now_date = std::ctime(&end_time);
-    return now_date;
 }
 
 template<typename T>
 std::string Block<T>::_hash_block() {
     SHA256 sha256;
-    return sha256(std::to_string(id) + parent_hash + created_time + _hash_registers());
+    return sha256(std::to_string(id) + parent_hash + _hash_registers());
 }
 
 template<typename T>
@@ -106,11 +94,11 @@ std::string Block<T>::get_hash() {
 template<typename T>
 std::string Block<T>::_hash_registers() {
     SHA256 sha256;
-    auto it = this->registers;
+    std::string text = "";
     for (int i = 0; i < size; i++) {
-        sha256.add(it, sizeof(T));
-        it++;
+        text = text + registers[i];
     }
+    sha256(text);
     return sha256.getHash();
 }
 
@@ -127,14 +115,13 @@ T &Block<T>::at(const int &index) {
 
 template<typename T>
 void Block<T>::print() {
-    std::cout << "Created time: "<< this->created_time << std::endl;
     std::cout << "id: " << this->id << std::endl;
     std::cout << "nonce: " << this->nonce << std::endl;
     std::cout << "hash: " << this->hash << std::endl;
     std::cout << "parent hash: " << this->parent_hash << std::endl;
     std::cout << "Registers:" << std::endl;
-    for (int i=0; i<size; i++){
-        std::cout << '\t' <<this->registers[i] << std::endl;
+    for (int i = 0; i < size; i++) {
+        std::cout << '\t' << this->registers[i] << std::endl;
     }
 }
 
