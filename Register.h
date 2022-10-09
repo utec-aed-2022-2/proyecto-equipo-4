@@ -6,8 +6,13 @@
 #define PROYECTO_EQUIPO_4_REGISTER_H
 
 
-class Register {
+#include <string>
 
+class Register {
+std::string data;
+
+public:
+    Register(std::string data);
 };
 
 
