@@ -6,6 +6,7 @@
 #define PROYECTO_EQUIPO_4_BLOCKCHAIN_H
 
 #include <functional>
+#include <fstream>
 #include "ChainHash.h"
 #include "Block.h"
 
@@ -32,7 +33,9 @@ public:
 
     void insertRegister(T data);
 
-    int get_last_id();
+    int getLastId();
+
+    void loadFromCSV(const std::string& path);
 private:
     void _rehash_block(const int &id);
 };
@@ -90,11 +93,24 @@ void BlockChain<T>::insertRegister(T data)
 }
 
 template <typename T>
-int BlockChain<T>::get_last_id()
+int BlockChain<T>::getLastId()
 {
     return last_id;
 }
 
+template<typename T>
+void BlockChain<T>::loadFromCSV(const std::string &path) {
+    fstream f(path, ios::in);
+    std::string line;
+    if(f.is_open()){
+        while (getline(f, line)){
+            T regist(line);
+            this->insertRegister(regist);
+        }
+        f.close();
+    }
+    else throw "Could not open the file";
+}
 
 
 #endif //PROYECTO_EQUIPO_4_BLOCKCHAIN_H
