@@ -37,6 +37,7 @@ public:
 
     void loadFromCSV(const std::string &path);
 
+    ~BlockChain();
 private:
     void _rehash_block(const int &id);
 };
@@ -109,6 +110,19 @@ void BlockChain<T>::loadFromCSV(const std::string &path) {
         }
         f.close();
     } else throw "Could not open the file";
+}
+
+template<typename T>
+BlockChain<T>::~BlockChain() {
+    fstream f("../data.csv", ios::out);
+    if (f.is_open()){
+        f << "hash" << std::endl;
+        for (int i=0; i<next_id; i++){
+            auto t = blockchain.get(i);
+            f << t->get_hash() << std::endl;
+        }
+    }
+    else throw "Could not open the file";
 }
 
 
