@@ -1,3 +1,0 @@
-/home/juaquin/Documentos/UTEC/Ciclo4/AED/proyecto-equipo-4/cmake-build-debug/CMakeFiles/proyecto_equipo_4.dir
-/home/juaquin/Documentos/UTEC/Ciclo4/AED/proyecto-equipo-4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/juaquin/Documentos/UTEC/Ciclo4/AED/proyecto-equipo-4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
