@@ -18,14 +18,16 @@ private:
     ChainHash<int, Block<T> *> blockchain;
     int block_size;
     int next_id;
-    std::string genesis = "";
-    std::string bc_path = "../data.csv";
+    std::string genesis;
+    std::string bc_path;
 public:
     BlockChain(int block_size) {
+        bc_path = "../data.csv";
         this->block_size = block_size;
         b_block = new T[block_size];
         c = 0;
         next_id = 0;
+        loadFromCSV(bc_path);
     }
 
     T searchRegister(function<bool(string)> f, int &id_block, int &pos_register);
@@ -37,6 +39,8 @@ public:
     int getLastId();
 
     void loadFromCSV(const std::string &path);
+
+    void print();
 
     ~BlockChain();
 private:
@@ -85,11 +89,11 @@ void BlockChain<T>::insertRegister(T data) {
         T* temp = new T[block_size];
         copy_n(b_block, block_size, temp);
         if (next_id != 0) {
-            auto x = (blockchain.get(next_id - 1))->get_hash();
-            Block<T> *n_block = new Block<T>(next_id, block_size, temp, x);
+            auto& x = (blockchain.get(next_id - 1))->get_hash();
+            auto *n_block = new Block<T>(next_id, block_size, temp, x);
             blockchain.insert(next_id, n_block);
         } else {
-            Block<T> *n_block = new Block<T>(next_id, block_size, temp, this->genesis);
+            auto *n_block = new Block<T>(next_id, block_size, temp, this->genesis);
             blockchain.insert(next_id, n_block);
         }
         next_id++;
@@ -129,6 +133,16 @@ BlockChain<T>::~BlockChain() {
         }
     }
     else throw "Could not open the file";
+}
+
+template<typename T>
+void BlockChain<T>::print() {
+    int n = 0;
+    while (n<next_id){
+        this->blockchain.get(n)->print();
+        std::cout << std::endl;
+        n++;
+    }
 }
 
 

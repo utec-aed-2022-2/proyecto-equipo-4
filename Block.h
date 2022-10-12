@@ -26,7 +26,7 @@ public:
 
     int get_id();
 
-    std::string get_hash();
+    std::string& get_hash();
 
     void recalculate_hash();
 
@@ -87,7 +87,7 @@ int Block<T>::get_id() {
 }
 
 template<typename T>
-std::string Block<T>::get_hash() {
+std::string& Block<T>::get_hash() {
     return this->hash;
 }
 

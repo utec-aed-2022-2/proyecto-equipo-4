@@ -28,10 +28,15 @@ void test_blockchain(){
     bc.insertRegister("Mundo");
     bc.insertRegister("Nose");
     bc.insertRegister("NosE");
+    bc.insertRegister("Hola1");
+    bc.insertRegister("Mundo1");
+    bc.insertRegister("Nose1");
+    bc.insertRegister("NosE1");
     int id_b=0,id_r=0;
     auto reg = bc.searchRegister(std::function<bool(std::string)>(&f1), id_b, id_r);
-    std::cout<<id_b<<" "<<id_r<<" "<<reg<<std::endl;
+    bc.print();
     bc.updateRegister(id_b,id_r,"hola");
+    bc.print();
     cout<<bc.searchRegister(std::function<bool(std::string)>(&f2), id_b, id_r);
 }
 
