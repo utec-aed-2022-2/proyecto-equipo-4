@@ -124,8 +124,7 @@ void ChainHash<TK, TV>::rehashing() {
     }
     //falta liberar el array anterior
     capacity *= 2;
-    this->array = t;
-    delete this->array;
+    delete[] this->array;
     this->array = t;
 }
 
