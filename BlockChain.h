@@ -21,8 +21,8 @@ private:
     std::string genesis;
     std::string bc_path;
 public:
-    BlockChain(int block_size) {
-        bc_path = "../data.csv";
+    BlockChain(int block_size, const std::string &n_path = "../data.csv") {
+        bc_path = n_path;
         this->block_size = block_size;
         b_block = new T[block_size];
         c = 0;
@@ -30,7 +30,7 @@ public:
         loadFromCSV(bc_path);
     }
 
-    T searchRegister(function<bool(string)> f, int &id_block, int &pos_register);
+    T searchRegister(std::function<bool(std::string)> f, int &id_block, int &pos_register);
 
     void updateRegister(int id_block, int pos_register, T new_register);
 
@@ -43,6 +43,7 @@ public:
     void print();
 
     ~BlockChain();
+
 private:
     void _rehash_block(const int &id);
 };
@@ -56,7 +57,7 @@ void BlockChain<T>::_rehash_block(const int &id) {
 }
 
 template<typename T>
-T BlockChain<T>::searchRegister(function<bool(string)> f, int &id_block, int &pos_register) {
+T BlockChain<T>::searchRegister(std::function<bool(std::string)> f, int &id_block, int &pos_register) {
     for (int i = 0; i < next_id; ++i) {
         Block<T> *block = blockchain.get(i);
         for (int j = 0; j < block_size; ++j) {
@@ -86,10 +87,10 @@ void BlockChain<T>::insertRegister(T data) {
     b_block[c] = data;
     c++;
     if (c == block_size) {
-        T* temp = new T[block_size];
-        copy_n(b_block, block_size, temp);
+        T *temp = new T[block_size];
+        std::copy_n(b_block, block_size, temp);
         if (next_id != 0) {
-            auto& x = (blockchain.get(next_id - 1))->get_hash();
+            auto &x = (blockchain.get(next_id - 1))->get_hash();
             auto *n_block = new Block<T>(next_id, block_size, temp, x);
             blockchain.insert(next_id, n_block);
         } else {
@@ -108,7 +109,7 @@ int BlockChain<T>::getLastId() {
 
 template<typename T>
 void BlockChain<T>::loadFromCSV(const std::string &path) {
-    fstream f(path, ios::in);
+    std::fstream f(path, std::ios::in);
     std::string line;
     if (f.is_open()) {
         getline(f, line);
@@ -122,23 +123,22 @@ void BlockChain<T>::loadFromCSV(const std::string &path) {
 
 template<typename T>
 BlockChain<T>::~BlockChain() {
-    fstream f(this->bc_path, ios::out);
-    if (f.is_open()){
+    std::fstream f(this->bc_path, std::ios::out);
+    if (f.is_open()) {
         f << std::endl;
-        for (int i=0; i<next_id; i++){
+        for (int i = 0; i < next_id; i++) {
             auto t = blockchain.get(i);
-            for (int j=0; j<block_size; j++){
-                f << t->at(j) << std::endl;
+            for (int j = 0; j < block_size; j++) {
+                f << std::string(t->at(j)) << std::endl;
             }
         }
-    }
-    else throw "Could not open the file";
+    } else throw "Could not open the file";
 }
 
 template<typename T>
 void BlockChain<T>::print() {
     int n = 0;
-    while (n<next_id){
+    while (n < next_id) {
         this->blockchain.get(n)->print();
         std::cout << std::endl;
         n++;

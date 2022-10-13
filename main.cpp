@@ -2,7 +2,7 @@
 #include "Block.h"
 #include "BlockChain.h"
 #include "sha256.h"
-
+#include "Register.h"
 void test_block(){
     SHA256 sha256;
     sha256("0");
@@ -37,12 +37,18 @@ void test_blockchain(){
     bc.print();
     bc.updateRegister(id_b,id_r,"hola");
     bc.print();
-    cout<<bc.searchRegister(std::function<bool(std::string)>(&f2), id_b, id_r);
+    std::cout<<bc.searchRegister(std::function<bool(std::string)>(&f2), id_b, id_r);
+}
+
+void test_register(){
+    BlockChain<Register> bc(4,"../registers.csv");
+    bc.print();
 }
 
 int main()
 {
     test_block();
     test_blockchain();
+    test_register();
     return 0;
 }

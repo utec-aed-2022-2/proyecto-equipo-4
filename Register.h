@@ -8,11 +8,17 @@
 
 #include <string>
 
-class Register {
-std::string data;
+struct Register {
+    std::string emisor;
+    std::string receptor;
+    float monto;
+    std::string fecha;
 
-public:
-    Register(std::string data);
+    Register() = default;
+
+    Register(const std::string &line);
+
+    operator std::string() const;
 };
 
 

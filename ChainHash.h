@@ -7,8 +7,6 @@
 
 #include "ForwardList.h"
 
-using namespace std;
-
 
 const float maxFillFactor = 0.5;
 const int maxCollision = 3;
@@ -33,7 +31,7 @@ private:
     ForwardList<Entry> *array;
     int capacity;
     int size;
-    hash<TK> getHash;
+    std::hash <TK> getHash;
 
 public:
     ChainHash(int _capacity = 5);
@@ -42,7 +40,7 @@ public:
 
     bool insert(TK key, TV value);
 
-    TV& get(TK key);
+    TV &get(TK key);
 
     void rehashing();
 
@@ -102,7 +100,7 @@ bool ChainHash<TK, TV>::insert(TK key, TV value) {
 }
 
 template<typename TK, typename TV>
-TV& ChainHash<TK, TV>::get(TK key) {
+TV &ChainHash<TK, TV>::get(TK key) {
     size_t hashcode = getHash(key);
     int index = hashcode % capacity;
     //TODO: iterar en la lista array[index]

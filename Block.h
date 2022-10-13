@@ -96,7 +96,7 @@ std::string Block<T>::_hash_registers() {
     SHA256 sha256;
     std::string text = "";
     for (int i = 0; i < size; i++) {
-        text = text + registers[i];
+        text += std::string(registers[i]);
     }
     sha256(text);
     return sha256.getHash();
@@ -121,7 +121,7 @@ void Block<T>::print() {
     std::cout << "parent hash: " << this->parent_hash << std::endl;
     std::cout << "Registers:" << std::endl;
     for (int i = 0; i < size; i++) {
-        std::cout << '\t' << this->registers[i] << std::endl;
+        std::cout << '\t' << std::string(this->registers[i]) << std::endl;
     }
 }
 
