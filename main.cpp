@@ -41,8 +41,9 @@ void test_blockchain(){
 }
 
 void test_register(){
-    BlockChain<Register> bc(4,"../registers.csv");
+    BlockChain<Register> bc(4,"../MOCK_DATA_DEMO.csv");
     bc.print();
+    bc.createIndex(&Register::emisor);
 }
 
 int main()

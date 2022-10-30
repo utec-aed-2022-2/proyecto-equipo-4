@@ -9,6 +9,7 @@
 #include <fstream>
 #include "ChainHash.h"
 #include "Block.h"
+#include "Index.h"
 
 template<typename T>
 class BlockChain {
@@ -29,6 +30,9 @@ public:
         next_id = 0;
         loadFromCSV(bc_path);
     }
+
+    template <typename TA>
+    void createIndex(TA attribute);
 
     T searchRegister(std::function<bool(std::string)> f, int &id_block, int &pos_register);
 
@@ -145,5 +149,20 @@ void BlockChain<T>::print() {
     }
 }
 
+template<typename T>
+template<typename TA>
+void BlockChain<T>::createIndex(TA attribute) {
+    if (next_id == 0){
+        return;
+    }
+    auto temp = blockchain.get(0)->at(0).*attribute;
+    Index<decltype(temp), int> index{};
+    for (int i = 0; i < next_id; i++) {
+        auto t = blockchain.get(i);
+        for (int j = 0; j < block_size; j++) {
+            index.insert(t->at(j).*attribute, i);
+        }
+    }
+}
 
 #endif //PROYECTO_EQUIPO_4_BLOCKCHAIN_H

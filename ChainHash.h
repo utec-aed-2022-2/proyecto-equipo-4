@@ -50,6 +50,8 @@ public:
 
     int bucket_size(int i_bucket);
 
+    TV* find(TK key);
+
     /*ForwardList<Entry>::iterator begin(int i_bucket){
         return array[i_bucket].begin();
     }
@@ -154,6 +156,19 @@ int ChainHash<TK, TV>::bucket_size(int i_bucket) {
 template<typename TK, typename TV>
 ChainHash<TK, TV>::~ChainHash() {
     delete[] this->array;
+}
+
+template<typename TK, typename TV>
+TV* ChainHash<TK, TV>::find(TK key) {
+    size_t hashcode = getHash(key);
+    int index = hashcode % capacity;
+    //TODO: iterar en la lista array[index]
+    for (auto it = array[index].begin(); it != array[index].end(); it++) {
+        if (it->key == key) {
+            return &it->value;
+        }
+    }
+    return nullptr;
 }
 
 
