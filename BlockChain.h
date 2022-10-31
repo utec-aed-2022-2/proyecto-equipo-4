@@ -156,7 +156,7 @@ void BlockChain<T>::createIndex(TA attribute) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    Index<decltype(temp), int> index{};
+    HashIndex<decltype(temp), int> index{};
     for (int i = 0; i < next_id; i++) {
         auto t = blockchain.get(i);
         for (int j = 0; j < block_size; j++) {
