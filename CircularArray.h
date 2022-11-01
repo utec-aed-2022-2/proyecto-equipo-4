@@ -16,7 +16,8 @@ private:
     int back, front;
 public:
     CircularArray();
-    explicit CircularArray(int _capacity);
+    CircularArray(int _capacity);
+    CircularArray& operator=(const CircularArray<T>& another);
     virtual ~CircularArray();
     void push_front(T data);
     void push_back(T data);
@@ -42,7 +43,7 @@ private:
 template <class T>
 CircularArray<T>::CircularArray()
 {
-    CircularArray(0);
+    CircularArray(5);
 }
 
 template <class T>
@@ -83,7 +84,7 @@ std::string CircularArray<T>::to_string(const std::string& sep)
 
 template <class T>
 void CircularArray<T>::resize(){
-    int* array1 = new int[capacity*2];
+    T* array1 = new T[capacity*2];
     for(int i = 0; i < capacity; i++) {
         array1[i] = array[(i+front)%capacity];
     }
@@ -111,7 +112,7 @@ void CircularArray<T>::push_front(T data)
 template <class T>
 void CircularArray<T>::push_back(T data)
 {
-    int s = next(back);
+    int s;
     if (front == -1 || back == -1){
         front = back = 0;
         s = back;
@@ -120,6 +121,7 @@ void CircularArray<T>::push_back(T data)
         resize();
         s = next(back);
     }
+    else s = next(back);
     array[s] = data;
     back = s;
 }
@@ -267,4 +269,16 @@ template<typename T>
 void CircularArray<T>::clear() {
     back = front = -1;
 }
+
+template<typename T>
+CircularArray<T>& CircularArray<T>::operator=(const CircularArray<T>& another) {
+    delete [] this->array;
+    this->array = new T[another.capacity];
+    std::copy_n(another.array, another.capacity, this->array);
+    this->front = another.front;
+    this->back = another.back;
+    this->capacity = another.capacity;
+    return *this;
+}
+
 #endif //PROYECTO_EQUIPO_4_CIRCULARARRAY_H

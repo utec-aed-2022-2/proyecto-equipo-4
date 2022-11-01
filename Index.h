@@ -35,7 +35,11 @@ struct HashIndex : public Index<TK, TV>{
 
 template <typename TK, typename TV>
 struct MaxHeapIndex : public Index<TK, TV>{
-    Heap<std::pair<TK, ForwardList<TV>*>> blocks;
+    MaxHeapIndex() = default;
+    multiHeap<TK, TV> blocks;
+    void insert(TK key, TV value) override {
+        blocks.push(key, value);
+    }
 };
 
 #endif //PROYECTO_EQUIPO_4_INDEX_H
