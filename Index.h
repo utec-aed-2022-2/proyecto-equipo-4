@@ -42,4 +42,13 @@ struct MaxHeapIndex : public Index<TK, TV>{
     }
 };
 
+template <typename TK, typename TV>
+struct MinHeapIndex : public Index<TK, TV>{
+    MinHeapIndex() = default;
+    multiHeap<TK, TV, std::less<>> blocks;
+    void insert(TK key, TV value) override {
+        blocks.push(key, value);
+    }
+};
+
 #endif //PROYECTO_EQUIPO_4_INDEX_H

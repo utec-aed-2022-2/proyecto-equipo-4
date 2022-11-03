@@ -37,6 +37,9 @@ public:
     template <typename TA>
     void createIndexHeap(TA attribute);
 
+    template <typename TA>
+    void createIndexMinHeap(TA attribute);
+
     T searchRegister(std::function<bool(std::string)> f, int &id_block, int &pos_register);
 
     void updateRegister(int id_block, int pos_register, T new_register);
@@ -176,6 +179,22 @@ void BlockChain<T>::createIndexHeap(TA attribute) {
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
     MaxHeapIndex<decltype(temp), int> index;
+    for (int i = 0; i < next_id; i++) {
+        auto t = blockchain.get(i);
+        for (int j = 0; j < block_size; j++) {
+            index.insert(t->at(j).*attribute, i);
+        }
+    }
+}
+
+template<typename T>
+template<typename TA>
+void BlockChain<T>::createIndexMinHeap(TA attribute) {
+    if (next_id == 0){
+        return;
+    }
+    auto temp = blockchain.get(0)->at(0).*attribute;
+    MinHeapIndex<decltype(temp), int> index;
     for (int i = 0; i < next_id; i++) {
         auto t = blockchain.get(i);
         for (int j = 0; j < block_size; j++) {

@@ -44,7 +44,8 @@ void test_register(){
     BlockChain<Register> bc(4,"../MOCK_DATA_DEMO.csv");
     bc.print();
     bc.createIndex(&Register::emisor);
-    bc.createIndexHeap(&Register::fecha);
+    bc.createIndexHeap(&Register::monto);
+    bc.createIndexMinHeap(&Register::monto);
 }
 
 int main()

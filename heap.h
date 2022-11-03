@@ -115,5 +115,6 @@ public:
         Entry<T, TV> n_entry(key);
         n_entry.insert(value);
         Heap<Entry<T, TV>, CMP>::push(n_entry);
+        //std::cout<<this->elements[0].key<<std::endl;
     }
 };
