@@ -23,7 +23,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    secDialog *secDialog;
-    TDialog *TDialog;
+    secDialog *_secDialog;
+    TDialog *_TDialog;
 };
 #endif // MAINWINDOW_H

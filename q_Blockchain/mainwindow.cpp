@@ -17,15 +17,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    secDialog = new class secDialog(this);
-    secDialog->show();
+    _secDialog = new class secDialog(this);
+    _secDialog->show();
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
 
-    TDialog = new class TDialog(this);
-    TDialog->show();
+    _TDialog = new class TDialog(this);
+    _TDialog->show();
 }
 
