@@ -5,7 +5,7 @@
 #ifndef PROYECTO_EQUIPO_4_CHAINHASH_H
 #define PROYECTO_EQUIPO_4_CHAINHASH_H
 
-#include "ForwardList.h"
+#include "ForwardList/ForwardList.h"
 
 
 const float maxFillFactor = 0.5;

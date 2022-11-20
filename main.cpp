@@ -46,6 +46,9 @@ void test_register(){
     bc.createIndex(&Register::emisor);
     bc.createIndexHeap(&Register::monto);
     bc.createIndexMinHeap(&Register::monto);
+    bc.createIndexAVL(&Register::monto);
+    bc.createIndexB(&Register::monto);
+    cout << typeid(&Register::monto).name() << endl;
 }
 
 int main()

@@ -31,8 +31,6 @@ cmake-build-debug
 *.exe
 *.out
 *.app
-./q_Blockchain/q_Blockchain.pro.user
-./q_Blockchain/q_Blockchain.pro.user.76f8678
 /build-q_Blockchain-Desktop_Qt_6_4_0_GCC_64bit-Debug
 build-q_Blockchain-Desktop_Qt_6_4_0_GCC_64bit-Debug
 /build-q_Blockchain-Desktop_Qt_6_4_0_GCC_64bit-Debug/

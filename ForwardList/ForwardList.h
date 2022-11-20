@@ -40,10 +40,6 @@ private:
 public:
     ForwardList() : head(nullptr), nodes(0){}
 
-    ~ForwardList(){
-        clear();
-    }
-
     iterator begin(){
         return iterator(head);
     }
