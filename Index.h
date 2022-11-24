@@ -20,7 +20,9 @@ struct Index{
 
 template <typename TK, typename TV>
 struct HashIndex : public Index<TK, TV>{
+
     ChainHash<TK, ForwardList<TV>*> blocks;
+
     void insert(TK key, TV value) override {
         auto r = blocks.find(key);
         if (r) {

@@ -53,6 +53,29 @@
      <string>ENVIAR</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>450</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load CSV</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="csvPath">
+    <property name="geometry">
+     <rect>
+      <x>132</x>
+      <y>450</y>
+      <width>281</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -60,7 +83,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

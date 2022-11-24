@@ -7,6 +7,7 @@
 
 #include <functional>
 #include <fstream>
+#include <any>
 #include "ChainHash.h"
 #include "Block.h"
 #include "Index.h"
@@ -14,6 +15,7 @@
 template<typename T>
 class BlockChain {
 private:
+    ChainHash<string, ForwardList<any>> indice;
     T *b_block;
     int c;
     ChainHash<int, Block<T> *> blockchain;
@@ -61,6 +63,9 @@ public:
     ~BlockChain();
 
 private:
+    template<class I, class TA>
+    void _create_index(TA data);
+    
     void _rehash_block(const int &id);
 };
 
@@ -164,65 +169,41 @@ void BlockChain<T>::print() {
 template<typename T>
 template<typename TA>
 void BlockChain<T>::createIndex(TA attribute) {
-    if (next_id == 0){
+    if (next_id == 0) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    HashIndex<decltype(temp), int> index{};
-    for (int i = 0; i < next_id; i++) {
-        auto t = blockchain.get(i);
-        for (int j = 0; j < block_size; j++) {
-            index.insert(t->at(j).*attribute, i);
-        }
-    }
+    _create_index<HashIndex<decltype(temp), int>>(attribute);
 }
 
 template<typename T>
 template<typename TA>
 void BlockChain<T>::createIndexHeap(TA attribute) {
-    if (next_id == 0){
+    if (next_id == 0) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    MaxHeapIndex<decltype(temp), int> index;
-    for (int i = 0; i < next_id; i++) {
-        auto t = blockchain.get(i);
-        for (int j = 0; j < block_size; j++) {
-            index.insert(t->at(j).*attribute, i);
-        }
-    }
+    _create_index<MaxHeapIndex<decltype(temp), int>>(attribute);
 }
 
 template<typename T>
 template<typename TA>
 void BlockChain<T>::createIndexMinHeap(TA attribute) {
-    if (next_id == 0){
+    if (next_id == 0) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    MinHeapIndex<decltype(temp), int> index;
-    for (int i = 0; i < next_id; i++) {
-        auto t = blockchain.get(i);
-        for (int j = 0; j < block_size; j++) {
-            index.insert(t->at(j).*attribute, i);
-        }
-    }
+    _create_index<MinHeapIndex<decltype(temp), int>>(attribute);
 }
 
 template<typename T>
 template<typename TA>
 void BlockChain<T>::createIndexAVL(TA attribute) {
-    if (next_id == 0){
+    if (next_id == 0) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    AVLIndex<decltype(temp), int> index;
-    for (int i = 0; i < next_id; i++) {
-        auto t = blockchain.get(i);
-        for (int j = 0; j < block_size; j++) {
-            index.insert(t->at(j).*attribute, i);
-        }
-    }
+    _create_index<AVLIndex<decltype(temp), int>>(attribute);
 }
 
 template<typename T>
@@ -232,11 +213,23 @@ void BlockChain<T>::createIndexB(TA attribute) {
         return;
     }
     auto temp = blockchain.get(0)->at(0).*attribute;
-    BTreeIndex<decltype(temp), int> index;
+    _create_index<BTreeIndex<decltype(temp), int>>(attribute);
+}
+
+template<typename T>
+template<class I, class TA>
+void BlockChain<T>::_create_index(TA data) {
+    cout << typeid(TA).name() << endl;
+    if (!indice.find(typeid(TA).name()))
+        indice.insert(typeid(TA).name(), ForwardList<any>());
+    auto& r = indice.get(typeid(TA).name());
+    cout << r.size() << endl;
+    auto index = new I();
+    r.push_front(index);
     for (int i = 0; i < next_id; i++) {
         auto t = blockchain.get(i);
         for (int j = 0; j < block_size; j++) {
-            index.insert(t->at(j).*attribute, i);
+            index->insert(t->at(j).*data, i);
         }
     }
 }

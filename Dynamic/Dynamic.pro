@@ -12,16 +12,22 @@ INCLUDEPATH += include/
 VPATH += src/
 SOURCES += \
     copypastecell.cpp \
+    dialog.cpp \
     main.cpp \
     copypaste.cpp \
     tabnew.cpp \
+    window.cpp  ../sha256.cpp ../Register.cpp
 
 HEADERS += \
+    dialog.h \
     include/copypastecell.h \
     include/copypaste.h \
-    include/tabnew.h
+    include/tabnew.h \
+    window.h ../sha256.h ../Block.h ../BlockChain.h ../ForwardList/List.h ../ForwardList/ForwardList.h ../ChainHash.h ../Register.h ../Index.h ../Vector/CircularArray.h ../AVL/avl.h AVL/node.h ../Vector/queue.h
 
 FORMS += \
+    dialog.ui \
+    mainwindow.ui \
     ui/copypastecell.ui \
     ui/tabnew.ui \
     ui/copypaste.ui
