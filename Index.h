@@ -16,7 +16,7 @@ struct Index{
     virtual void insert(const TK&, const TV&) = 0;
     virtual void top(){}
     virtual Entry<TK, TV>& get(){}
-    virtual void get(TK){}
+    virtual Entry<TK, TV>& get(TK){}
 };
 
 template <typename TK, typename TV>
@@ -33,6 +33,14 @@ struct HashIndex : public Index<TK, TV>{
             f->push_front(value);
             blocks.insert(key, f);
         }
+    }
+    Entry<TK, TV>& get(TK k){
+        auto* res = new Entry<TK, TV>(k);
+        auto& e = blocks.get(k);
+        for(auto e_: *e){
+            res->insert(e_);
+        }
+        return *res;
     }
     HashIndex() = default;
 };
@@ -57,6 +65,9 @@ struct MinHeapIndex : public Index<TK, TV>{
     multiHeap<TK, TV, std::less<>> blocks;
     void insert(const TK& key, const TV& value) override {
         blocks.push(key, value);
+    }
+    Entry<TK, TV>& get() override{
+        return blocks.elements[0];
     }
 };
 

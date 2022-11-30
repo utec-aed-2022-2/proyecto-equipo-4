@@ -10,12 +10,14 @@ void test_register(){
     bc.createIndex(&Register::emisor, 1);
     bc.createIndexHeap(&Register::emisor, 1);
     bc.createIndexMinHeap(&Register::emisor, 1);
+    bc.createIndexMinHeap(&Register::receptor, 2);
     bc.createIndexHeap(&Register::monto, 3);
     bc.createIndexAVL(&Register::monto, 3);
     bc.createIndexB(&Register::monto, 3);
     auto r = bc.getMax(&Register::monto, 3);
     auto r2 = bc.getMax(&Register::emisor, 1);
-    auto r3 = bc.getMax(&Register::receptor, 2);
+    auto r3 = bc.getMin(&Register::receptor, 2);
+    auto r4 = bc.getValue(&Register::emisor, "Aerified",1);
     for (auto it: *r3) {
         cout << it.regis->receptor << endl;
     }
@@ -23,6 +25,9 @@ void test_register(){
         cout << it.regis->monto << endl;
     }
     for(auto it: *r2){
+        cout << it.regis->emisor << endl;
+    }
+    for(auto it: *r4){
         cout << it.regis->emisor << endl;
     }
 }

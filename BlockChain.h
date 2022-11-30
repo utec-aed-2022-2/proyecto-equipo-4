@@ -79,13 +79,13 @@ public:
     ForwardList<ResultIndex<T>>* getMax(TA atribute, int i_atr);
 
     template<typename TA>
-    ForwardList<ResultIndex<T>>& getMin(TA atribute, int i_atr);
+    ForwardList<ResultIndex<T>>* getMin(TA atribute, int i_atr);
 
     template<typename TA, typename TV>
-    ForwardList<ResultIndex<T>>& getValue(TA atribute, TV value, int i_atr);
+    ForwardList<ResultIndex<T>>* getValue(TA atribute, TV value, int i_atr);
 
     template<typename TA, typename TV>
-    ForwardList<ResultIndex<T>>& getInRange(TA atribute, TV start, TV end, int i_atr);
+    ForwardList<ResultIndex<T>>* getInRange(TA atribute, TV start, TV end, int i_atr);
 
     ~BlockChain();
 
@@ -327,7 +327,7 @@ ForwardList<ResultIndex<T>>* BlockChain<T, A1, a1 ,V1, A2, a2,V2, A3, a3,V3, A4,
 
 template<typename T, typename A1, A1 a1, typename V1, typename A2, A2 a2, typename V2, typename A3, A3 a3, typename V3, typename A4, A4 a4, typename V4>
 template<typename TA>
-ForwardList<ResultIndex<T>> &BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getMin(TA atribute, int i_atr) {
+ForwardList<ResultIndex<T>>* BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getMin(TA atribute, int i_atr) {
     auto temp = blockchain.get(0)->at(0).*atribute;
     auto fun = [atribute, this, &temp](auto &indi){
         for(int i=0; i<indi.size(); i++){
@@ -355,6 +355,47 @@ ForwardList<ResultIndex<T>> &BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A
             }
         }
         auto filt = [&atribute, temp](const T& regist){return regist.*atribute == temp;};
+        return searchRegister(filt);
+    };
+    if constexpr (std::is_same<TA,A1>::value) {
+        if (i_atr == 1) {
+            return fun(indice1);
+        } else if (i_atr == 2) {
+            return fun(indice2);
+        } else if (i_atr == 4) {
+            return fun(indice4);
+        }
+    }
+    else {
+        return fun(indice3);
+    }
+}
+
+template<typename T, typename A1, A1 a1, typename V1, typename A2, A2 a2, typename V2, typename A3, A3 a3, typename V3, typename A4, A4 a4, typename V4>
+template<typename TA, typename TV>
+ForwardList<ResultIndex<T>> *
+BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getValue(TA atribute, TV value, int i_atr) {
+    auto temp = blockchain.get(0)->at(0).*atribute;
+    auto fun = [atribute, this, &temp, value](auto &indi){
+        for(int i=0; i<indi.size(); i++){
+            auto* index = indi[i];
+            if (index->type() == "hash") {
+                auto* res = new ForwardList<ResultIndex<T>>();
+                auto indices = index->get(value);
+                cout << "Usando indice hash" << endl;
+                for(auto ind: *indices.values){
+                    Block<T>*& bl = this->blockchain.get(ind);
+                    for(int pos_block = 0; pos_block < this->block_size; pos_block++) {
+                        T& reg = bl->at(pos_block);
+                        if (reg.*atribute == indices.key) {
+                            res->push_front(ResultIndex(&reg, pos_block, ind));
+                        }
+                    }
+                }
+                return res;
+            }
+        }
+        auto filt = [&atribute, value](const T& regist){return regist.*atribute == value;};
         return searchRegister(filt);
     };
     if constexpr (std::is_same<TA,A1>::value) {
