@@ -33,6 +33,10 @@ private:
             return this->current!=other.current;
         }
 
+        T operator*(){
+            return this->current->data;
+        }
+
         T* operator->(){
             return &current->data;
         }

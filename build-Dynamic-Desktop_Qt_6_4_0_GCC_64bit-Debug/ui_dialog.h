@@ -12,14 +12,18 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_Dialog
 {
 public:
+    QWidget *widget;
+    QFormLayout *formLayout;
     QLineEdit *lineEdit;
     QPushButton *pushButton;
 
@@ -28,12 +32,22 @@ public:
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName("Dialog");
         Dialog->resize(400, 300);
-        lineEdit = new QLineEdit(Dialog);
+        widget = new QWidget(Dialog);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(20, 120, 351, 58));
+        formLayout = new QFormLayout(widget);
+        formLayout->setObjectName("formLayout");
+        formLayout->setContentsMargins(0, 0, 0, 0);
+        lineEdit = new QLineEdit(widget);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(60, 120, 113, 25));
-        pushButton = new QPushButton(Dialog);
+
+        formLayout->setWidget(0, QFormLayout::SpanningRole, lineEdit);
+
+        pushButton = new QPushButton(widget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(220, 120, 89, 25));
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, pushButton);
+
 
         retranslateUi(Dialog);
 
@@ -43,7 +57,7 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QCoreApplication::translate("Dialog", "Dialog", nullptr));
-        pushButton->setText(QCoreApplication::translate("Dialog", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("Dialog", "Load", nullptr));
     } // retranslateUi
 
 };

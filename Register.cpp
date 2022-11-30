@@ -14,7 +14,7 @@ Register::Register(const std::string &line) {
     std::string t;
     getline(str, t, ',');
     this->monto = stof(t);
-    getline(str, this->fecha, ',');
+    getline(str, this->fecha);
 }
 
 Register::operator std::string() const {

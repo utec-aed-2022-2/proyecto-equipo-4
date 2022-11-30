@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../Dynamic/include/tabnew.h"
+#include "../Dynamicvv/include/tabnew.h"
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'tabnew.h' doesn't include <QObject>."

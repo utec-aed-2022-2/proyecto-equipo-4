@@ -12,18 +12,18 @@
 
 template <typename TK, typename TV>
 struct Index{
-    virtual void insert(TK, TV) = 0;
+    virtual string type() = 0;
+    virtual void insert(const TK&, const TV&) = 0;
     virtual void top(){}
-    virtual void get(){}
+    virtual Entry<TK, TV>& get(){}
     virtual void get(TK){}
 };
 
 template <typename TK, typename TV>
 struct HashIndex : public Index<TK, TV>{
-
     ChainHash<TK, ForwardList<TV>*> blocks;
-
-    void insert(TK key, TV value) override {
+    string type() override {return "hash";}
+    void insert(const TK& key, const TV& value) override {
         auto r = blocks.find(key);
         if (r) {
             (*r)->push_front(value);
@@ -39,18 +39,23 @@ struct HashIndex : public Index<TK, TV>{
 
 template <typename TK, typename TV>
 struct MaxHeapIndex : public Index<TK, TV>{
+    string type() override {return "max";}
     MaxHeapIndex() = default;
     multiHeap<TK, TV> blocks;
-    void insert(TK key, TV value) override {
+    void insert(const TK& key, const TV& value) override {
         blocks.push(key, value);
+    }
+    Entry<TK, TV>& get() override{
+        return blocks.elements[0];
     }
 };
 
 template <typename TK, typename TV>
 struct MinHeapIndex : public Index<TK, TV>{
+    string type() override {return "min";}
     MinHeapIndex() = default;
     multiHeap<TK, TV, std::less<>> blocks;
-    void insert(TK key, TV value) override {
+    void insert(const TK& key, const TV& value) override {
         blocks.push(key, value);
     }
 };
@@ -81,9 +86,11 @@ struct AVLIndex : public Index<TK, TV> {
             this->key < k.key;
         }
     };
+
+    string type() override {return "avl";}
     AVLIndex() = default;
     AVLTree<S> avl;
-    void insert(TK key, TV value) override {
+    void insert(const TK& key, const TV& value) override {
         avl.insert(S(key, value));
     }
 };
@@ -114,9 +121,10 @@ struct BTreeIndex : public Index<TK, TV> {
             this->key < k.key;
         }
     };
+    string type() override {return "btree";}
     BTreeIndex() = default;
     BTree<S> btree{10};
-    void insert(TK key, TV value) override {
+    void insert(const TK& key, const TV& value) override {
         btree.insert(S(key, value));
     }
 };

@@ -21,6 +21,9 @@ public:
     virtual ~CircularArray();
     void push_front(T data);
     void push_back(T data);
+
+    template<typename... Args>
+    void emplace_back(Args&&... args);
     void insert(T data, int pos);
     T pop_front();
     T pop_back();
@@ -279,6 +282,12 @@ CircularArray<T>& CircularArray<T>::operator=(const CircularArray<T>& another) {
     this->back = another.back;
     this->capacity = another.capacity;
     return *this;
+}
+
+template<class T>
+template<typename... Args>
+void CircularArray<T>::emplace_back(Args &&... args) {
+    this->push_back(T(args...));
 }
 
 #endif //PROYECTO_EQUIPO_4_CIRCULARARRAY_H

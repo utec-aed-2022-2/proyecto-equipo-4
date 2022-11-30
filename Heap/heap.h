@@ -5,7 +5,7 @@
 template<typename T, typename CMP = std::greater<T>>
 class Heap
 {
-protected:
+public:
     CircularArray<T> elements{5};
     CMP cmp;
 public:
@@ -102,7 +102,7 @@ struct Entry {
 };
 
 template<typename T, typename TV, typename CMP = std::greater<Entry<T, TV>>>
-class multiHeap : private Heap<Entry<T, TV>, CMP>{
+class multiHeap : public Heap<Entry<T, TV>, CMP>{
 public:
     multiHeap() = default;
     void push(T key, TV value) {
@@ -117,4 +117,6 @@ public:
         Heap<Entry<T, TV>, CMP>::push(n_entry);
         //std::cout<<this->elements[0].key<<std::endl;
     }
+
+
 };

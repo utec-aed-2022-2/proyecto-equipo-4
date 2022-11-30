@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../Dynamic/include/copypastecell.h"
+#include "../Dynamicvv/include/copypastecell.h"
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'copypastecell.h' doesn't include <QObject>."

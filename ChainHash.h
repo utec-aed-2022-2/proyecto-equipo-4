@@ -38,7 +38,7 @@ public:
 
     float fillFactor();
 
-    bool insert(TK key, TV value);
+    bool insert(TK key, TV& value);
 
     TV &get(TK key);
 
@@ -76,7 +76,7 @@ float ChainHash<TK, TV>::fillFactor() {
 }
 
 template<typename TK, typename TV>
-bool ChainHash<TK, TV>::insert(TK key, TV value) {
+bool ChainHash<TK, TV>::insert(TK key, TV& value) {
     if (fillFactor() >= maxFillFactor) rehashing();
     size_t hashcode = getHash(key);
     int index = hashcode % capacity;
