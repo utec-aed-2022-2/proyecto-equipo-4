@@ -17,6 +17,7 @@ struct Index{
     virtual void top(){}
     virtual Entry<TK, TV>& get(){}
     virtual Entry<TK, TV>& get(TK){}
+    virtual ForwardList<Entry<TK, TV>>* get(TK, TK){}
 };
 
 template <typename TK, typename TV>
@@ -122,21 +123,26 @@ struct BTreeIndex : public Index<TK, TV> {
         void insert(S value) {
             f.push_front(value.f.front());
         }
-        bool operator==(S k){
+        bool operator==(const S& k){
             this->key = k.key;
         }
-        bool operator>(S k){
+        bool operator>(const S& k){
             this->key > k.key;
         }
-        bool operator<(S k){
+        bool operator<(const S& k){
             this->key < k.key;
         }
     };
     string type() override {return "btree";}
     BTreeIndex() = default;
-    BTree<S> btree{10};
+    BTree<Entry<TK,TV>> btree{10};
     void insert(const TK& key, const TV& value) override {
-        btree.insert(S(key, value));
+        Entry<TK, TV> e(key);
+        e.insert(value);
+        btree.insert(e);
+    }
+    ForwardList<Entry<TK, TV>>* get(TK start, TK end){
+        return btree.search_range(start, end);
     }
 };
 

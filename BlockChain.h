@@ -138,6 +138,20 @@ void BlockChain<T, A1, a1 ,V1, A2, a2,V2, A3, a3,V3, A4, a4,V4>::insertRegister(
     if (c == block_size) {
         T *temp = new T[block_size];
         std::copy_n(b_block, block_size, temp);
+        for(int i=0; i<block_size; i++){
+            for(int j=0; j<indice1.size(); i++){
+                indice1[i]->insert(temp[i].*a1, next_id);
+            }
+            for(int j=0; j<indice1.size(); i++){
+                indice2[i]->insert(temp[i].*a2, next_id);
+            }
+            for(int j=0; j<indice1.size(); i++){
+                indice3[i]->insert(temp[i].*a3, next_id);
+            }
+            for(int j=0; j<indice1.size(); i++){
+                indice4[i]->insert(temp[i].*a4, next_id);
+            }
+        }
         if (next_id != 0) {
             auto &x = (blockchain.get(next_id - 1))->get_hash();
             auto *n_block = new Block<T>(next_id, block_size, temp, x);
@@ -396,6 +410,51 @@ BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getValue(TA atrib
             }
         }
         auto filt = [&atribute, value](const T& regist){return regist.*atribute == value;};
+        return searchRegister(filt);
+    };
+    if constexpr (std::is_same<TA,A1>::value) {
+        if (i_atr == 1) {
+            return fun(indice1);
+        } else if (i_atr == 2) {
+            return fun(indice2);
+        } else if (i_atr == 4) {
+            return fun(indice4);
+        }
+    }
+    else {
+        return fun(indice3);
+    }
+}
+
+template<typename T, typename A1, A1 a1, typename V1, typename A2, A2 a2, typename V2, typename A3, A3 a3, typename V3, typename A4, A4 a4, typename V4>
+template<typename TA, typename TV>
+ForwardList<ResultIndex<T>> *
+BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getInRange(TA atribute, TV start, TV end, int i_atr) {
+    auto temp = blockchain.get(0)->at(0).*atribute;
+    auto fun = [atribute, this, &temp, start, end](auto &indi){
+        for(int i=0; i<indi.size(); i++){
+            auto* index = indi[i];
+            if (index->type() == "btree") {
+                auto* res = new ForwardList<ResultIndex<T>>();
+                auto indices = index->get(start, end);
+                cout << indices->size() << endl;
+                cout << "Usando indice Btree" << endl;
+                for(auto ind: *indices){
+                    for(auto in: *ind.values) {
+                        Block<T> *&bl = this->blockchain.get(in);
+                        cout << "ok" << endl;
+                        for (int pos_block = 0; pos_block < this->block_size; pos_block++) {
+                            T &reg = bl->at(pos_block);
+                            if (reg.*atribute == ind.key) {
+                                res->push_front(ResultIndex(&reg, pos_block, in));
+                            }
+                        }
+                    }
+                }
+                return res;
+            }
+        }
+        auto filt = [&atribute, start, end](const T& regist){return start <= (regist.*atribute) and (regist.*atribute) <= end;};
         return searchRegister(filt);
     };
     if constexpr (std::is_same<TA,A1>::value) {

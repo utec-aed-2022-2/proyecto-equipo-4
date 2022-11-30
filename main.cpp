@@ -18,6 +18,7 @@ void test_register(){
     auto r2 = bc.getMax(&Register::emisor, 1);
     auto r3 = bc.getMin(&Register::receptor, 2);
     auto r4 = bc.getValue(&Register::emisor, "Aerified",1);
+    auto r5 = bc.getInRange(&Register::fecha, "0000000000", "99999999999999999999999999999999",4);
     for (auto it: *r3) {
         cout << it.regis->receptor << endl;
     }
@@ -29,6 +30,9 @@ void test_register(){
     }
     for(auto it: *r4){
         cout << it.regis->emisor << endl;
+    }
+    for(auto it: *r5){
+        cout << it.regis->fecha << endl;
     }
 }
 
