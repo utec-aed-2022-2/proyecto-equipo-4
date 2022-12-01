@@ -30,14 +30,14 @@ private:
     CircularArray<Index<string, int>*> indice4{1};
     T *b_block;
     int c;
-    ChainHash<int, Block<T> *> blockchain;
     int block_size;
-    int next_id;
+
     std::string genesis;
     std::string bc_path;
 
 public:
-
+    ChainHash<int, Block<T> *> blockchain;
+    int next_id;
     BlockChain(int block_size, const std::string &n_path = "../data.csv") {
         bc_path = n_path;
         this->block_size = block_size;

@@ -29,14 +29,14 @@ class CopyPaste : public QMainWindow
     Q_OBJECT
 
 public:
-    CopyPaste(QWidget *parent = nullptr);
+    CopyPaste(BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc,QWidget *parent = nullptr);
     ~CopyPaste();
     QVector<TabNew*> allTabPtr;
     std::vector<std::vector<std::string>> allRegisters;
     void test();
     std::vector<std::string> process_line(QByteArray lines);
     void test_blockchain();
-    BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *bc;
+    BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc;
 
 private slots:
     void on_newTabButton_clicked();

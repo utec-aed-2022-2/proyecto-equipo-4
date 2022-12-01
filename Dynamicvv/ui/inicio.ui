@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Ver</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -49,7 +49,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Registros</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>310</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search</string>
    </property>
   </widget>
  </widget>

@@ -97,6 +97,21 @@ prácticos de costo amortizado.
 ```cpp
 BlockChain<T>::getInRange()
 ```
+<<<<<<< HEAD
+O(n): el peor caso es cuando no se tiene el indice btree, si se tuviese, seria poco común llegar a O(n)
+```cpp
+BlockChain<T>::getMin()
+```
+O(1): si se tiene el indice MinHeap, en todo caso fuese O(n)
+```cpp
+BlockChain<T>::getMax()
+```
+O(1): si se tiene el indice MaxHeap, en todo caso fuese O(n)
+```cpp
+BlockChain<T>::print()
+```
+O(n): recorre todos los bloques y todos los reqistros
+=======
 ### Get min:
 Halla el dato de menor valor. Utiliza el índice MinHeap. En el caso de la operación inserción la complejidad logaritmica es de 
 O(log N). El heap es creado en una complejidad lineal O(n).
@@ -117,9 +132,11 @@ BlockChain<T>::print()
 ### Start with
 Muestra el valor del tipo de atributo requerido que empieza con un string dado. Para ello utiliza el índice Trie. Si no se requiere hace la búsqueda de forma lineal.
 
+>>>>>>> 241b889f245fd5f537f226f053b5350c46428afc
 ```cpp
 BlockChain<T>::start_with()
 ```
+<<<<<<< HEAD
 ## Índices 
 ### Árbol AVL
 
@@ -129,5 +146,8 @@ BlockChain<T>::start_with()
 
 ### Max Heap
 ![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/max.png)
+=======
+O(n): El peor caso en que todos sean prefijos de una misma palabra, la busqueda tendria que buscar en todos los nodos.
+>>>>>>> 252c70bbe0843d14e107973adc5e497cbdbe3d87
 
  

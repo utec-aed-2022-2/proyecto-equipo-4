@@ -5,8 +5,9 @@
 #include <thread>
 #include "QFile"
 
-CopyPaste::CopyPaste(QWidget *parent)
-    : QMainWindow(parent)
+CopyPaste::CopyPaste(BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc, QWidget *parent)
+    : QMainWindow(parent),
+       bc(bc)
     , ui(new Ui::CopyPaste)
 {
     ui->setupUi(this);
@@ -16,7 +17,6 @@ CopyPaste::CopyPaste(QWidget *parent)
 CopyPaste::~CopyPaste()
 {
     delete ui;
-    delete bc;
 }
 
 void CopyPaste::test()
@@ -25,13 +25,10 @@ void CopyPaste::test()
 
     int n = 0;
     while (n < bc->next_id) {
-      std::cout<<bc->next_id<<std::endl;
+
     //        addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
-      std::vector<std::string> v1;      v1 = bc->blockchain.get(n)->r_print();
-      std::cout<<"PRINT AQUI"<<std::endl;
-      for(int i = 0; i < (int)v1.size(); i++){
-          std::cout<<v1[i]<<std::endl;
-      }
+      std::vector<std::string> v1 = bc->blockchain.get(n)->r_print();
+
       addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
       for (auto i = 0; i < (int)v1.size(); i++){
           if (i <=3 ){
