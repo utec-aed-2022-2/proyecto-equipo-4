@@ -17,6 +17,9 @@
 #include <QTextStream>
 #include <iostream>
 #include <tabnew.h>
+#include "../BlockChain.h"
+#include "../Register.h"
+#include "../ChainHash.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class CopyPaste; }
 QT_END_NAMESPACE
@@ -33,10 +36,10 @@ public:
     void test();
     std::vector<std::string> process_line(QByteArray lines);
     void test_blockchain();
+    BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *bc;
+
 private slots:
-
     void on_newTabButton_clicked();
-
     void on_tabWidget_tabCloseRequested(int index);
 
 private:

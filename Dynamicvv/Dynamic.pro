@@ -7,40 +7,29 @@ CONFIG += consoles
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
+#REAL
 INCLUDEPATH += include/
 VPATH += src/
 SOURCES += \
     copypastecell.cpp \
     generar.cpp \
     inicio.cpp \
-    main.cpp \
-    copypaste.cpp \
+    loadfile.cpp \
     tabnew.cpp \
-    sha256.cpp \
-    Register.cpp \
-
+    main.cpp \
+    copypaste.cpp ../sha256.cpp ../Register.cpp
 HEADERS += \
     include/generar.h \
     include/copypastecell.h \
-    include/copypaste.h \
     include/tabnew.h \
-    include/Block.h \
-    include/BlockChain.h\
-    include/ChainHash.h\
-    include/CircularArray.h\
-    include/ForwardList.h\
-    include/heap.h\
-    include/Index.h\
-    include/List.h\
-    include/Node.h\
-    include/Prueba.h\
-    include/Register.h\
-    include/data.csv \
     include/inicio.h \
+    include/loadfile.h \
+    include/copypaste.h \
+    copypaste.h  ../sha256.h ../Block.h ../BlockChain.h ../ForwardList/List.h ../ForwardList/ForwardList.h ../ChainHash.h ../Register.h ../Index.h ../Vector/CircularArray.h ../AVL/avl.h AVL/node.h ../Vector/queue.h \
 
 
 FORMS += \
+    ui/loadfile.ui \
     ui/generar.ui \
     ui/inicio.ui \
     ui/copypastecell.ui \

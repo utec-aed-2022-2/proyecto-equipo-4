@@ -2,6 +2,7 @@
 #include "ui_inicio.h"
 #include "copypaste.h"
 #include "generar.h"
+#include "loadfile.h"
 //#include "
 Inicio::Inicio(QWidget *parent) :
     QDialog(parent),
@@ -10,26 +11,35 @@ Inicio::Inicio(QWidget *parent) :
     ui->setupUi(this);
 }
 
+Inicio::Inicio(QWidget *parent, CopyPaste* pantalla, Generar* pantalla2) :
+    QDialog(parent),
+    ui(new Ui::Inicio)
+{
+    this->Transacciones = pantalla;
+    this->Registrar = pantalla2;
+    ui->setupUi(this);
+}
+
 Inicio::~Inicio()
 {
+    delete Transacciones;
+    delete Registrar;
     delete ui;
 }
 
 void Inicio::on_pushButton_clicked()
 {
-    std::cout<<"DERI"<<std::endl;
-    hide();
-    CopyPaste* w = new CopyPaste;
-    w->test();
-    w->show();
+
+//    hide();
+    Transacciones->test();
+    Transacciones->show();
 
 }
 
 
 void Inicio::on_pushButton_2_clicked()
 {
-    hide();
-    Generar* g = new Generar;
-    g->show();
+//    hide();
+    Registrar->show();
 }
 

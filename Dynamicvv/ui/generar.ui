@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>190</x>
      <y>370</y>
-     <width>431</width>
-     <height>91</height>
+     <width>341</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="text">
@@ -39,7 +39,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>190</x>
      <y>120</y>
      <width>53</width>
      <height>20</height>
@@ -52,7 +52,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>190</x>
      <y>200</y>
      <width>69</width>
      <height>20</height>
@@ -65,7 +65,7 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>190</x>
      <y>290</y>
      <width>74</width>
      <height>20</height>
@@ -106,6 +106,19 @@
      <width>201</width>
      <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>VOLVER</string>
    </property>
   </widget>
  </widget>

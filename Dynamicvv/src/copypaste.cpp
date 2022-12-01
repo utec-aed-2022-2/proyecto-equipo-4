@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 #include <chrono>
 #include <thread>
+#include "QFile"
 
 CopyPaste::CopyPaste(QWidget *parent)
     : QMainWindow(parent)
@@ -15,55 +16,98 @@ CopyPaste::CopyPaste(QWidget *parent)
 CopyPaste::~CopyPaste()
 {
     delete ui;
+    delete bc;
 }
 
 void CopyPaste::test()
 {
+//    bc->print();
 
-//    QString filename = "Data.txt";
-//    QFile filexd(filename);
-//    if (filexd.open(QIODevice::ReadWrite)) {
-//        QTextStream stream(&filexd);
-//        stream << "something";
-//    }
+    int n = 0;
+    while (n < bc->next_id) {
+      std::cout<<bc->next_id<<std::endl;
+    //        addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
+      std::vector<std::string> v1;      v1 = bc->blockchain.get(n)->r_print();
+      std::cout<<"PRINT AQUI"<<std::endl;
+      for(int i = 0; i < (int)v1.size(); i++){
+          std::cout<<v1[i]<<std::endl;
+      }
+      addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
+      for (auto i = 0; i < (int)v1.size(); i++){
+          if (i <=3 ){
+          }else{
+              allTabPtr[n]->addNewCell();
+              QString registro = QString::fromUtf8(v1[i]);
+              allTabPtr[n]->allCellPtr[i-4]->setTextData(registro);
+           }
+      }
 
-
-
-    std::cout<<"TEST PASSED"<<std::endl;
-
-    QFile file("example.csv");
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-            return;
-    while (!file.atEnd()) {
-        std::cout<<"ENTRA PROCESS"<<std::endl;
-
-        QByteArray line = file.readLine();
-        auto s_line = process_line(line);
-        allRegisters.push_back(s_line);
+      n++;
     }
-
-
-    std::cout<<"TAMANO"<<allRegisters.size()<<std::endl;
-
-    for (int i = 0; i < (int)allRegisters.size();i++){
-
-        addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
-        for (int j = 0; j < (int)allRegisters[i].size()-4;j++){
-            allTabPtr[i]->addNewCell();
-        }
-        std::cout<<"REAL TAMANO = "<<allRegisters[0].size();
-        for (int j = 0; j < (int)allRegisters[i].size()-4;j++){
-            QString str = QString::fromUtf8(allRegisters[i][j+4].c_str());
-
-            allTabPtr[i]->allCellPtr[j]->setTextData(str);
-        }
-
-    }
-
-//    for (auto it = allTabPtr.begin(); it != allTabPtr.end();it++){
-
-//    }s
 }
+
+
+
+
+      //    QString qstr = QString::fromStdString(file_name);
+      //    QFile file(qstr);
+
+      //    std::cout<<"TEST PASSED"<<std::endl;
+      //    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+      //        std::cout<<"RETORNA ACA"<<std::endl;
+      //        return;
+      //    }
+
+      //    else{
+      //        std::cout<<"RETURN"<<std::endl;
+      //    }
+      //    while (!file.atEnd()) {
+      //        std::cout<<"ENTRA PROCESS"<<std::endl;
+      //        auto line = file.readLine();
+      //        std::vector<std::string> s_line = process_line(line);
+      //        allRegisters.push_back(s_line);
+      //    }
+
+      //    std::cout<<"TAMANO"<<allRegisters.size()<<std::endl;
+
+      //    for (int i = 0; i < (int)allRegisters.size();i++){
+
+      //        addTab(QString("BLOCK ID %0").arg(ui->tabWidget->count()+1));
+      //        for (int j = 0; j < (int)allRegisters[i].size()-4;j++){
+      //            allTabPtr[i]->addNewCell();
+      //        }
+      //        std::cout<<"REAL TAMANO = "<<allRegisters[0].size();
+      //        for (int j = 0; j < (int)allRegisters[i].size()-4;j++){
+      //            QString strBloque = QString::fromUtf8(allRegisters[i][j+4].c_str());
+      //            auto p = std::chrono::system_clock::now();
+      //            std::string fecha = std::to_string(std::chrono::duration_cast<std::chrono::seconds>(p.time_since_epoch()).count());
+
+      //            std::vector<std::string> v1;
+      //            std::string Bloque = strBloque.toStdString();
+      //            std::stringstream ss(Bloque);
+      //            while (ss.good()) {
+      //                std::string substr;
+      //                getline(ss, substr, ' ');
+      //                v1.push_back(substr);
+      //            }
+
+      //            while (ss.good()) {
+      //                std::string substr;
+      //                getline(ss, substr, ',');
+      //                v1.push_back(substr);
+      //            }
+      //            std::cout<<endl;
+      //            for (auto i: v1){
+      //                std::cout<<i<<std::endl;
+      //            }
+      //            this->bc->insertRegister(Register(v1[0]+","+v1[1]+","+v1[2]+","+fecha));
+
+      //            v1.clear();
+      //            allTabPtr[i]->allCellPtr[j]->setTextData(strBloque);
+      //        }
+
+      //    }
+
 std::vector<std::string> CopyPaste::process_line(QByteArray line){
 
     std::cout<<"PROCESS LINE"<<std::endl;
