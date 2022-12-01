@@ -78,15 +78,28 @@ Block<T>::Block(const int &id, const int &size, T *registers, std::string &paren
 Se utilizaron las siguientes estructuras de datos para organizar la informacion de los bloques de una manera eficiente. Algunos tipos
 de estructuras de datos son mas convenientes para realizar ciertas tareas:
 ### Árbol AVL
-El árbol AVL añade una condición de equilibrio de modo que la 
+El árbol AVL añade una condición de equilibrio de modo que la búsqueda sea amortizada. Este tipo de estructura es usualmente utilizado
+para funciones como inserción, búsqueda y eliminación eficiente. 
 ### Árbol B
 El árbol B también es una estructura balanceada. Se utiliza para la búsqueda por rango en una complejidad O(n). A diferencia de otras
 estructuras el árbol B hace inserciones y eliminaciones en tiempo logaritmico amortizado. Sin embargo, pueden desperdiciar memoria, ya que algunos nodos no permanecen totalmente ocupados.
+### Cadena Hash
+La cadena hash es un método para producir muchas claves de un solo uso a partir de una sola clave. Se puede aplicar una función hash sucesivamente a datos adicionales para registrar la cronología de la existencia otros datos. Como en este caso, las funciones hash
+son ampliamente utilizadas en la tecnologia blockchain, el bitcoin es ejemplo más conocido.
+
 
 ## Métodos de Blockchain
+
+
+
+### Get in range:
+Utiliza la estructura del Árbol B para la obtención de datos dentro un cierto rango, si no utiliza dicha estructura. Realiza una búsqueda lineal. En ambos casos la complejidad algoritmica es O(n). A pesar de ello, el árbol B ofrece es mas eficiente en casos 
+prácticos de costo amortizado. 
+
 ```cpp
 BlockChain<T>::getInRange()
 ```
+<<<<<<< HEAD
 O(n): el peor caso es cuando no se tiene el indice btree, si se tuviese, seria poco común llegar a O(n)
 ```cpp
 BlockChain<T>::getMin()
@@ -100,6 +113,28 @@ O(1): si se tiene el indice MaxHeap, en todo caso fuese O(n)
 BlockChain<T>::print()
 ```
 O(n): recorre todos los bloques y todos los reqistros
+=======
+### Get min:
+Halla el dato de menor valor. Utiliza el índice MinHeap. En el caso de la operación inserción la complejidad logaritmica es de 
+O(log N). El heap es creado en una complejidad lineal O(n).
+```cpp
+BlockChain<T>::getMin()
+```
+## Get max:
+De manera similar, get max utiliza el índice MaxHeap.
+```cpp
+BlockChain<T>::getMax()
+```
+# Print
+Para mostrar el contenido de la blockchain se llama obtiene el valor de la cadena Hash, y se imprime por bloque, siempre y cuando
+halla un id para el siguiente. 
+```cpp
+BlockChain<T>::print()
+```
+# Start with
+Muestra el valor del tipo de atributo requerido que empieza con un string dado. Para ello utiliza el índice Trie. Si no se requiere hace la búsqueda de forma lineal.
+
+>>>>>>> 241b889f245fd5f537f226f053b5350c46428afc
 ```cpp
 BlockChain<T>::start_with()
 ```
