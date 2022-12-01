@@ -7,6 +7,7 @@
 
 #include "sha256.h"
 #include <iostream>
+#include <vector>
 
 template<typename T>
 class Block {
@@ -33,7 +34,7 @@ public:
     T &at(const int &index);
 
     void print();
-
+    std::vector<std::string> r_print();
 private:
 
     std::string _hash_block();
@@ -124,5 +125,22 @@ void Block<T>::print() {
         std::cout << '\t' << std::string(this->registers[i]) << std::endl;
     }
 }
-
+template<typename T>
+std::vector<std::string> Block<T>::r_print() {
+    std::vector<std::string> result;
+    std::cout << "id: " << this->id << std::endl;
+    std::cout << "nonce: " << this->nonce << std::endl;
+    std::cout << "hash: " << this->hash << std::endl;
+    std::cout << "parent hash: " << this->parent_hash << std::endl;
+    std::cout << "Registers:" << std::endl;
+    result.push_back(std::to_string(this->id));
+    result.push_back(std::to_string(this->nonce));
+    result.push_back(this->hash);
+    result.push_back(this->parent_hash);
+    for (int i = 0; i < size; i++) {
+        std::cout << '\t' << std::string(this->registers[i]) << std::endl;
+        result.push_back(std::string(this->registers[i]));
+    }
+    return result;
+}
 #endif //PROYECTO_EQUIPO_4_BLOCK_H
