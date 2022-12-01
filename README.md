@@ -74,6 +74,34 @@ Block<T>::Block(const int &id, const int &size, T *registers, std::string &paren
     this->hash = _calculate_hash();
 }
 ```
+## Estructuras de Datos
+Se utilizaron las siguientes estructuras de datos para organizar la informacion de los bloques de una manera eficiente. Algunos tipos
+de estructuras de datos son mas convenientes para realizar ciertas tareas:
+### Árbol AVL
+El árbol AVL añade una condición de equilibrio de modo que la 
+### Árbol B
+El árbol B también es una estructura balanceada. Se utiliza para la búsqueda por rango en una complejidad O(n). A diferencia de otras
+estructuras el árbol B hace inserciones y eliminaciones en tiempo logaritmico amortizado. Sin embargo, pueden desperdiciar memoria, ya que algunos nodos no permanecen totalmente ocupados.
 
+## Métodos de Blockchain
+```cpp
+BlockChain<T>::getInRange()
+```
+
+```cpp
+BlockChain<T>::getMin()
+```
+
+```cpp
+BlockChain<T>::getMax()
+```
+```cpp
+BlockChain<T>::print()
+```
+
+```cpp
+
+BlockChain<T>::start_with()
+```
 
  
