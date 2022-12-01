@@ -4,8 +4,8 @@
 #include "ui_generar.h"
 #include "iostream"
 
-Generar::Generar(QWidget *parent) :
-    QDialog(parent),
+Generar::Generar(BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc, QWidget *parent) :
+    QDialog(parent),bc(bc),
     ui(new Ui::Generar)
 {
 

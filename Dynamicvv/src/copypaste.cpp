@@ -5,8 +5,9 @@
 #include <thread>
 #include "QFile"
 
-CopyPaste::CopyPaste(QWidget *parent)
-    : QMainWindow(parent)
+CopyPaste::CopyPaste(BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc, QWidget *parent)
+    : QMainWindow(parent),
+       bc(bc)
     , ui(new Ui::CopyPaste)
 {
     ui->setupUi(this);
@@ -16,7 +17,6 @@ CopyPaste::CopyPaste(QWidget *parent)
 CopyPaste::~CopyPaste()
 {
     delete ui;
-    delete bc;
 }
 
 void CopyPaste::test()

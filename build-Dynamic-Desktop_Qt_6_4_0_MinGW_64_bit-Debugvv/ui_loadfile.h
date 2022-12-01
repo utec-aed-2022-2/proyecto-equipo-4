@@ -20,6 +20,7 @@ class Ui_LoadFile
 {
 public:
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
 
     void setupUi(QDialog *LoadFile)
     {
@@ -28,7 +29,10 @@ public:
         LoadFile->resize(400, 300);
         pushButton = new QPushButton(LoadFile);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(110, 180, 161, 41));
+        pushButton->setGeometry(QRect(110, 120, 161, 41));
+        pushButton_2 = new QPushButton(LoadFile);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setGeometry(QRect(140, 220, 89, 25));
 
         retranslateUi(LoadFile);
 
@@ -39,6 +43,7 @@ public:
     {
         LoadFile->setWindowTitle(QCoreApplication::translate("LoadFile", "Dialog", nullptr));
         pushButton->setText(QCoreApplication::translate("LoadFile", "CARGAR ARCHIVO", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("LoadFile", "CLOSE", nullptr));
     } // retranslateUi
 
 };

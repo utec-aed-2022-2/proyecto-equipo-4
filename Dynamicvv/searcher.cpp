@@ -1,8 +1,9 @@
 #include "searcher.h"
 #include "ui_searcher.h"
 
-Searcher::Searcher(QWidget *parent) :
+Searcher::Searcher(BlockChain<Register, decltype(&Register::emisor), &Register::emisor,string, decltype(&Register::receptor),&Register::receptor, string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string> *&bc,QWidget *parent) :
     QDialog(parent),
+    bc(bc),
     ui(new Ui::Searcher)
 {
     ui->setupUi(this);

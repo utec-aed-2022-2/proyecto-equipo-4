@@ -55,15 +55,18 @@ void LoadFile::on_pushButton_clicked()
 
     }else{
         bc = new BlockChain<Register, decltype(&Register::emisor), &Register::emisor,std::string, decltype(&Register::receptor),&Register::receptor, std::string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string>(8, new_name);
-        Generar* pRegistro = new Generar();
-        CopyPaste *aplicacion = new CopyPaste();
-        Searcher *searcher = new Searcher();
-        aplicacion->bc = bc;
-        pRegistro->bc = bc;
-        searcher->bc = bc;
+        Generar* pRegistro = new Generar(bc, nullptr);
+        CopyPaste *aplicacion = new CopyPaste(bc, nullptr);
+        Searcher *searcher = new Searcher(bc,nullptr);
         Inicio *inicio = new Inicio(nullptr, aplicacion, pRegistro, searcher);
         inicio->show();
     }
 
+}
+
+
+void LoadFile::on_pushButton_2_clicked()
+{
+    delete bc;
 }
 
