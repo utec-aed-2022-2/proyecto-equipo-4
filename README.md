@@ -90,8 +90,6 @@ son ampliamente utilizadas en la tecnologia blockchain, el bitcoin es ejemplo m�
 
 ## Métodos de Blockchain
 
-
-
 ### Get in range:
 Utiliza la estructura del Árbol B para la obtención de datos dentro un cierto rango, si no utiliza dicha estructura. Realiza una búsqueda lineal. En ambos casos la complejidad algoritmica es O(n). A pesar de ello, el árbol B ofrece es mas eficiente en casos 
 prácticos de costo amortizado. 
@@ -105,22 +103,31 @@ O(log N). El heap es creado en una complejidad lineal O(n).
 ```cpp
 BlockChain<T>::getMin()
 ```
-## Get max:
+### Get max:
 De manera similar, get max utiliza el índice MaxHeap.
 ```cpp
 BlockChain<T>::getMax()
 ```
-# Print
+### Print
 Para mostrar el contenido de la blockchain se llama obtiene el valor de la cadena Hash, y se imprime por bloque, siempre y cuando
 halla un id para el siguiente. 
 ```cpp
 BlockChain<T>::print()
 ```
-# Start with
+### Start with
 Muestra el valor del tipo de atributo requerido que empieza con un string dado. Para ello utiliza el índice Trie. Si no se requiere hace la búsqueda de forma lineal.
 
 ```cpp
 BlockChain<T>::start_with()
 ```
+## Índices 
+### Árbol AVL
+
+![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/avl.png)
+### Árbol B
+![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/btree.png)
+
+### Max Heap
+![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/max.png)
 
  
