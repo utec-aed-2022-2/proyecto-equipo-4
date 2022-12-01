@@ -121,11 +121,14 @@ BlockChain<T>::start_with()
 ```
 ## Índices 
 ### Árbol AVL
+En el caso del Árbol AVL, mediante el índice implementado, el tiempo de ejecución mejora un 4.7 % para los casos tratados. El resultado no es muy drástica 
 
 ![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/avl.png)
 ### Árbol B
+Sobre el Árbol  B, presenta una mejora del tiempo de ejecución de 32.1% para los casos tratados. 
 ![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/btree.png)
 
+Acerca de Max heap, es el índice que presenta una mayor mejora, de hasta 641% para la función max value.
 ### Max Heap
 ![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/max.png)
 
