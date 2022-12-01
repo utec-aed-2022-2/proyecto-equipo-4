@@ -87,21 +87,22 @@ estructuras el árbol B hace inserciones y eliminaciones en tiempo logaritmico a
 ```cpp
 BlockChain<T>::getInRange()
 ```
-
+O(n): el peor caso es cuando no se tiene el indice btree, si se tuviese, seria poco común llegar a O(n)
 ```cpp
 BlockChain<T>::getMin()
 ```
-
+O(1): si se tiene el indice MinHeap, en todo caso fuese O(n)
 ```cpp
 BlockChain<T>::getMax()
 ```
+O(1): si se tiene el indice MaxHeap, en todo caso fuese O(n)
 ```cpp
 BlockChain<T>::print()
 ```
-
+O(n): recorre todos los bloques y todos los reqistros
 ```cpp
-
 BlockChain<T>::start_with()
 ```
+O(n): El peor caso en que todos sean prefijos de una misma palabra, la busqueda tendria que buscar en todos los nodos.
 
  

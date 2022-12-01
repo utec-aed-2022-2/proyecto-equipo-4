@@ -15,6 +15,7 @@ SOURCES += \
     generar.cpp \
     inicio.cpp \
     loadfile.cpp \
+    searcher.cpp \
     tabnew.cpp \
     main.cpp \
     copypaste.cpp ../sha256.cpp ../Register.cpp
@@ -26,9 +27,11 @@ HEADERS += \
     include/loadfile.h \
     include/copypaste.h \
     copypaste.h  ../sha256.h ../Block.h ../BlockChain.h ../ForwardList/List.h ../ForwardList/ForwardList.h ../ChainHash.h ../Register.h ../Index.h ../Vector/CircularArray.h ../AVL/avl.h AVL/node.h ../Vector/queue.h \
+    searcher.h
 
 
 FORMS += \
+    searcher.ui \
     ui/loadfile.ui \
     ui/generar.ui \
     ui/inicio.ui \

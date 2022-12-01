@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Searcher</class>
+ <widget class="QDialog" name="Searcher">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>902</width>
+    <height>547</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>70</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>emisor</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>receptor</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>monto</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>fecha</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>70</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Hash</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MinHeap</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MaxHeap</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Btree</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Trie</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>70</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Crear Indice</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>450</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_3">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>300</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>emisor</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>receptor</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>monto</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>fecha</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_4">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>300</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>value</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>min</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>max</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>range</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>start_with</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>370</y>
+     <width>113</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>370</y>
+     <width>113</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>331</width>
+     <height>361</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

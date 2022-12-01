@@ -34,10 +34,8 @@ LoadFile::LoadFile(QWidget *parent) :
 LoadFile::~LoadFile()
 {
     delete ui;
+    delete bc;
 }
-
-
-
 
 void LoadFile::on_pushButton_clicked()
 {
@@ -56,17 +54,15 @@ void LoadFile::on_pushButton_clicked()
     if(nombre_archivo.isEmpty()){
 
     }else{
-
-
-        auto *bc = new BlockChain<Register, decltype(&Register::emisor), &Register::emisor,std::string, decltype(&Register::receptor),&Register::receptor, std::string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string>(4, new_name);
-        Generar* pRegistro = new Generar;
-        CopyPaste *aplicacion = new CopyPaste;
+        bc = new BlockChain<Register, decltype(&Register::emisor), &Register::emisor,std::string, decltype(&Register::receptor),&Register::receptor, std::string, decltype(&Register::monto),&Register::monto, float, decltype(&Register::fecha), &Register::fecha,string>(8, new_name);
+        Generar* pRegistro = new Generar();
+        CopyPaste *aplicacion = new CopyPaste();
+        Searcher *searcher = new Searcher();
         aplicacion->bc = bc;
         pRegistro->bc = bc;
-        Inicio *inicio = new Inicio(nullptr, aplicacion, pRegistro);
-        aplicacion->test();
+        searcher->bc = bc;
+        Inicio *inicio = new Inicio(nullptr, aplicacion, pRegistro, searcher);
         inicio->show();
-
     }
 
 }

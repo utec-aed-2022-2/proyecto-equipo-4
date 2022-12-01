@@ -23,6 +23,7 @@ public:
     QPushButton *pushButton;
     QLabel *label;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
 
     void setupUi(QDialog *Inicio)
     {
@@ -31,13 +32,16 @@ public:
         Inicio->resize(573, 408);
         pushButton = new QPushButton(Inicio);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(370, 240, 93, 29));
+        pushButton->setGeometry(QRect(390, 210, 93, 29));
         label = new QLabel(Inicio);
         label->setObjectName("label");
         label->setGeometry(QRect(160, 50, 241, 41));
         pushButton_2 = new QPushButton(Inicio);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(60, 240, 93, 29));
+        pushButton_2->setGeometry(QRect(50, 210, 93, 29));
+        pushButton_3 = new QPushButton(Inicio);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setGeometry(QRect(220, 310, 89, 25));
 
         retranslateUi(Inicio);
 
@@ -47,9 +51,10 @@ public:
     void retranslateUi(QDialog *Inicio)
     {
         Inicio->setWindowTitle(QCoreApplication::translate("Inicio", "Dialog", nullptr));
-        pushButton->setText(QCoreApplication::translate("Inicio", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("Inicio", "Ver", nullptr));
         label->setText(QCoreApplication::translate("Inicio", "                    BIENVENIDO", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Inicio", "PushButton", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Inicio", "Registros", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("Inicio", "Search", nullptr));
     } // retranslateUi
 
 };
