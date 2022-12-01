@@ -7,7 +7,7 @@
 
 #include <functional>
 #include <fstream>
-#include <any>
+#include <string>
 #include "ChainHash.h"
 #include "Block.h"
 #include "Index.h"
@@ -62,6 +62,9 @@ public:
     template <typename TA>
     void createIndexB(TA attribute, int i_atr);
 
+    template <typename TA>
+    void createIndexTrie(TA attribute, int i_atr);
+
     template< typename TF>
     ForwardList<ResultIndex<T>>* searchRegister(TF& f);
 
@@ -86,6 +89,9 @@ public:
 
     template<typename TA, typename TV>
     ForwardList<ResultIndex<T>>* getInRange(TA atribute, TV start, TV end, int i_atr);
+
+    template<typename TA>
+    ForwardList<ResultIndex<T>>* start_with(TA atribute, string key, int i_atr);
 
     ~BlockChain();
 
@@ -468,6 +474,85 @@ BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::getInRange(TA atr
     }
     else {
         return fun(indice3);
+    }
+}
+
+template<typename T, typename A1, A1 a1, typename V1, typename A2, A2 a2, typename V2, typename A3, A3 a3, typename V3, typename A4, A4 a4, typename V4>
+template<typename TA>
+void BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::createIndexTrie(TA attribute, int i_atr) {
+    if (next_id == 0) {
+        return;
+    }
+    auto temp = blockchain.get(0)->at(0).*attribute;
+    auto* index = new TrieIndex<decltype(temp), int>();
+    if constexpr (std::is_same<TA,A1>::value) {
+        switch (i_atr) {
+            case 1:
+                indice1.push_back(index);
+                break;
+            case 2:
+                indice2.push_back(index);
+                break;
+            case 4:
+                indice4.push_back(index);
+                break;
+        }
+    }
+    else {
+        indice3.push_back(index);
+    }
+    for (int i = 0; i < next_id; i++) {
+        auto t = blockchain.get(i);
+        for (int j = 0; j < block_size; j++) {
+            auto d = t->at(j).*attribute;
+            transform(d.begin(), d.end(), d.begin(), [](unsigned char c){ return std::tolower(c); });
+            index->insert(d, i);
+        }
+    }
+}
+
+template<typename T, typename A1, A1 a1, typename V1, typename A2, A2 a2, typename V2, typename A3, A3 a3, typename V3, typename A4, A4 a4, typename V4>
+template<typename TA>
+ForwardList<ResultIndex<T>> *
+BlockChain<T, A1, a1, V1, A2, a2, V2, A3, a3, V3, A4, a4, V4>::start_with(TA atribute, string key, int i_atr) {
+    auto temp = blockchain.get(0)->at(0).*atribute;
+    auto fun = [atribute, this, &temp, &key](auto &indi){
+        for(int i=0; i<indi.size(); i++){
+            auto* index = indi[i];
+            if (index->type() == "trie") {
+                auto* res = new ForwardList<ResultIndex<T>>();
+                transform(key.begin(), key.end(), key.begin(), [](unsigned char c){ return std::tolower(c); });
+                auto indices = index->start_with(key);
+                cout << indices->size() << endl;
+                cout << "Usando indice trie" << endl;
+                for(auto ind: *indices){
+                    for(auto in: *ind.values) {
+                        Block<T> *&bl = this->blockchain.get(in);
+                        cout << "ok" << endl;
+                        for (int pos_block = 0; pos_block < this->block_size; pos_block++) {
+                            T &reg = bl->at(pos_block);
+                            auto temp = reg.*atribute;
+                            transform(temp.begin(), temp.end(), temp.begin(), [](unsigned char c){ return std::tolower(c); });
+                            if (temp == ind.key) {
+                                res->push_front(ResultIndex(&reg, pos_block, in));
+                            }
+                        }
+                    }
+                }
+                return res;
+            }
+        }
+        auto filt = [&atribute, key](const T& regist){return (regist.*atribute).rfind(key, 0) == 0;};
+        return searchRegister(filt);
+    };
+    if constexpr (std::is_same<TA,A1>::value) {
+        if (i_atr == 1) {
+            return fun(indice1);
+        } else if (i_atr == 2) {
+            return fun(indice2);
+        } else if (i_atr == 4) {
+            return fun(indice4);
+        }
     }
 }
 

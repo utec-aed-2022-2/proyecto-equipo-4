@@ -14,11 +14,13 @@ void test_register(){
     bc.createIndexHeap(&Register::monto, 3);
     bc.createIndexAVL(&Register::monto, 3);
     bc.createIndexB(&Register::monto, 3);
+    bc.createIndexTrie(&Register::receptor, 2);
     auto r = bc.getMax(&Register::monto, 3);
     auto r2 = bc.getMax(&Register::emisor, 1);
     auto r3 = bc.getMin(&Register::receptor, 2);
     auto r4 = bc.getValue(&Register::emisor, "Aerified",1);
-    auto r5 = bc.getInRange(&Register::fecha, "0000000000", "99999999999999999999999999999999",4);
+    auto r5 = bc.getInRange(&Register::fecha, "0000000000", "13",4);
+    auto r6 = bc.start_with(&Register::receptor, "Puc", 2);
     for (auto it: *r3) {
         cout << it.regis->receptor << endl;
     }
@@ -33,6 +35,9 @@ void test_register(){
     }
     for(auto it: *r5){
         cout << it.regis->fecha << endl;
+    }
+    for(auto it: *r6){
+        cout << it.regis->emisor << endl;
     }
 }
 

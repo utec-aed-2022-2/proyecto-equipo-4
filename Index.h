@@ -9,12 +9,13 @@
 #include "Heap/heap.h"
 #include "AVL/avl.h"
 #include "Btree/btree.h"
+#include "trie/triePatricia.h"
 
 template <typename TK, typename TV>
 struct Index{
     virtual string type() = 0;
     virtual void insert(const TK&, const TV&) = 0;
-    virtual void top(){}
+    virtual ForwardList<Entry<TK, TV>>* start_with(const string& key){}
     virtual Entry<TK, TV>& get(){}
     virtual Entry<TK, TV>& get(TK){}
     virtual ForwardList<Entry<TK, TV>>* get(TK, TK){}
@@ -109,30 +110,6 @@ struct AVLIndex : public Index<TK, TV> {
 
 template <typename TK ,typename TV>
 struct BTreeIndex : public Index<TK, TV> {
-    struct S {
-        TK key;
-        ForwardList<TV> f;
-        S() = default;
-        S(TK k, TV value) {
-            key = k;
-            this->insert(value);
-        }
-        void insert(TV value) {
-            f.push_front(value);
-        }
-        void insert(S value) {
-            f.push_front(value.f.front());
-        }
-        bool operator==(const S& k){
-            this->key = k.key;
-        }
-        bool operator>(const S& k){
-            this->key > k.key;
-        }
-        bool operator<(const S& k){
-            this->key < k.key;
-        }
-    };
     string type() override {return "btree";}
     BTreeIndex() = default;
     BTree<Entry<TK,TV>> btree{10};
@@ -145,5 +122,21 @@ struct BTreeIndex : public Index<TK, TV> {
         return btree.search_range(start, end);
     }
 };
+
+template <typename TK ,typename TV>
+struct TrieIndex : public Index<TK, TV> {
+    string type() override {return "trie";}
+    TrieIndex() = default;
+    TriePatricia<Entry<TK, TV>> trie;
+    void insert(const TK& key, const TV& value) override {
+        auto* e = new Entry<TK, TV>(key);
+        e->insert(value);
+        trie.insert(key, e);
+    }
+    ForwardList<Entry<TK, TV>>* start_with(const string& key) override{
+        return trie.start_with(key);
+    }
+};
+
 
 #endif //PROYECTO_EQUIPO_4_INDEX_H
