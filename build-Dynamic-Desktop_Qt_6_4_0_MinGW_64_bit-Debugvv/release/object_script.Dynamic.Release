@@ -1,0 +1,13 @@
+release/copypastecell.o
+release/generar.o
+release/inicio.o
+release/main.o
+release/copypaste.o
+release/tabnew.o
+release/sha256.o
+release/Register.o
+release/moc_generar.o
+release/moc_copypastecell.o
+release/moc_copypaste.o
+release/moc_tabnew.o
+release/moc_inicio.o

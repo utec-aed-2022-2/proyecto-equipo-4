@@ -1,0 +1,13 @@
+debug/copypastecell.o
+debug/generar.o
+debug/inicio.o
+debug/main.o
+debug/copypaste.o
+debug/tabnew.o
+debug/sha256.o
+debug/Register.o
+debug/moc_generar.o
+debug/moc_copypastecell.o
+debug/moc_copypaste.o
+debug/moc_tabnew.o
+debug/moc_inicio.o
