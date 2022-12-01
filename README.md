@@ -1,6 +1,5 @@
 Integrantes:
 - Remon Flores, Juaquin Estefano
-- Puente Jara, Virginia Norma
 - Callinapa Chunga, Johan Fabian
 ## BlockChain
 La estructura de datos utilizada para el manejo del blockchain es un table hash, donde el key es el id del bloque y el value es la clase template Block como puntero. Además para la construcción del mismo se están usando las clases template ChainHash y ForwardList implementadas en el curso. Asimismo, para el blockchain se tienen operaciones como insertRegister, searchRegister y updateRegister.

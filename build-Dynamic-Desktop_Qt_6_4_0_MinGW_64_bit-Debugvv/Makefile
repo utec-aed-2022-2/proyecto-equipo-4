@@ -2828,7 +2828,65 @@ searcher.o: ../Dynamicvv/searcher.cpp ../Dynamicvv/searcher.h \
 		../Btree/nodeb.h \
 		../Vector/queue.h \
 		../trie/triePatricia.h \
-		ui_searcher.h
+		ui_searcher.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/QVariant \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/QApplication \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qcoreapplication_platform.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qjnitypes.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qfuture.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qfutureinterface.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qmutex.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qtsan_impl.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qresultstore.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qfuture_impl.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qthreadpool.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qthread.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qelapsedtimer.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qrunnable.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qexception.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qpromise.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qlocale.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qguiapplication_platform.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/QComboBox \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qcombobox.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qtabwidget.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/QLineEdit \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qlineedit.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qtextcursor.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qtextdocument.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qtextformat.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qpen.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qtextoption.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/QPlainTextEdit \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qplaintextedit.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qtextedit.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qtextlayout.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qglyphrun.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qrawfont.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtGui/qfontdatabase.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/QPushButton \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/juaquin/Qt/6.4.0/gcc_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o searcher.o ../Dynamicvv/searcher.cpp
 
 tabnew.o: ../Dynamicvv/src/tabnew.cpp ../Dynamicvv/include/tabnew.h \

@@ -37,7 +37,7 @@ FORMS += \
     ui/inicio.ui \
     ui/copypastecell.ui \
     ui/tabnew.ui \
-    ui/copypaste.ui \
+    ui/copypaste.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

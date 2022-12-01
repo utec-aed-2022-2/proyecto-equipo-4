@@ -29,7 +29,14 @@ void Generar::on_pushButton_clicked()
         std::string monto = ui->lineEdit_3->text().toStdString();
         auto p = std::chrono::system_clock::now();
         std::string fecha = std::to_string(std::chrono::duration_cast<std::chrono::seconds>(p.time_since_epoch()).count());
-        this->bc->insertRegister(Register(emisor+","+receptor+","+monto+","+fecha));
+        if (ui->checkBox->isChecked()){
+            int id_block = ui->lineEdit_4->text().toInt();
+            int pos = ui->lineEdit_5->text().toInt();
+            this->bc->updateRegister(id_block, pos, Register(emisor+","+receptor+","+monto+","+fecha));
+        }
+        else {
+            this->bc->insertRegister(Register(emisor+","+receptor+","+monto+","+fecha));
+        }
         this->bc->print();
     }
 }
@@ -37,9 +44,6 @@ void Generar::on_pushButton_clicked()
 
 void Generar::on_pushButton_2_clicked()
 {
-//    this->hide();
-
-//    Inicio w = new Inicio
-
+    this->bc->print();
 }
 

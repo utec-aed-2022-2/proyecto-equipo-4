@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 #include "Register.h"
 
 Register::Register(const std::string &line) {
@@ -18,5 +19,7 @@ Register::Register(const std::string &line) {
 }
 
 Register::operator std::string() const {
-    return emisor+","+receptor+","+ std::to_string(monto)+","+fecha;
+    std::string s = std::to_string(monto);
+    std::replace(s.begin(), s.end(), ',', '.');
+    return emisor+","+receptor+","+s+","+fecha;
 }

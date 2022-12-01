@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -30,6 +31,11 @@ public:
     QLineEdit *lineEdit_3;
     QLineEdit *lineEdit;
     QPushButton *pushButton_2;
+    QCheckBox *checkBox;
+    QLineEdit *lineEdit_4;
+    QLineEdit *lineEdit_5;
+    QLabel *label_5;
+    QLabel *label_6;
 
     void setupUi(QDialog *Generar)
     {
@@ -63,6 +69,21 @@ public:
         pushButton_2 = new QPushButton(Generar);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(20, 10, 131, 51));
+        checkBox = new QCheckBox(Generar);
+        checkBox->setObjectName("checkBox");
+        checkBox->setGeometry(QRect(620, 110, 92, 23));
+        lineEdit_4 = new QLineEdit(Generar);
+        lineEdit_4->setObjectName("lineEdit_4");
+        lineEdit_4->setGeometry(QRect(620, 160, 113, 25));
+        lineEdit_5 = new QLineEdit(Generar);
+        lineEdit_5->setObjectName("lineEdit_5");
+        lineEdit_5->setGeometry(QRect(620, 210, 113, 25));
+        label_5 = new QLabel(Generar);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(620, 140, 67, 17));
+        label_6 = new QLabel(Generar);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(620, 190, 67, 17));
 
         retranslateUi(Generar);
 
@@ -77,7 +98,10 @@ public:
         label_3->setText(QCoreApplication::translate("Generar", "RECEPTOR", nullptr));
         label_4->setText(QCoreApplication::translate("Generar", "CANTIDAD", nullptr));
         label->setText(QCoreApplication::translate("Generar", "REALIZAR TRANSACCION", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Generar", "VOLVER", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Generar", "Print", nullptr));
+        checkBox->setText(QCoreApplication::translate("Generar", "update", nullptr));
+        label_5->setText(QCoreApplication::translate("Generar", "Id block", nullptr));
+        label_6->setText(QCoreApplication::translate("Generar", "Posici\303\263n", nullptr));
     } // retranslateUi
 
 };

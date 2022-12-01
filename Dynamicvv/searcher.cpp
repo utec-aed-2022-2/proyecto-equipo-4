@@ -28,7 +28,7 @@ void Searcher::on_pushButton_clicked()
         else if (type == "MaxHeap"){
             bc->createIndexHeap(&Register::emisor, 1);
         }
-        else if (type == "BTree"){
+        else if (type == "Btree"){
 
             bc->createIndexB(&Register::emisor, 1);
         }
@@ -46,7 +46,7 @@ void Searcher::on_pushButton_clicked()
         else if (type == "MaxHeap"){
             bc->createIndexHeap(&Register::receptor, 2);
         }
-        else if (type == "BTree"){
+        else if (type == "Btree"){
 
             bc->createIndexB(&Register::receptor, 2);
         }
@@ -64,8 +64,9 @@ void Searcher::on_pushButton_clicked()
         else if (type == "MaxHeap"){
             bc->createIndexHeap(&Register::monto, 3);
         }
-        else if (type == "BTree"){
+        else if (type == "Btree"){
             bc->createIndexB(&Register::monto, 3);
+            cout << "Se creo indice B" << endl;
         }
     }
     else {
@@ -78,7 +79,7 @@ void Searcher::on_pushButton_clicked()
         else if (type == "MaxHeap"){
             bc->createIndexHeap(&Register::fecha, 4);
         }
-        else if (type == "BTree"){
+        else if (type == "Btree"){
 
             bc->createIndexB(&Register::fecha, 4);
         }
@@ -159,6 +160,7 @@ void Searcher::on_pushButton_2_clicked()
             res = bc->start_with(&Register::fecha, ui->lineEdit->text().toStdString(),4);
         }
     }
+    cout << res->size() << endl;
     string q;
     for(auto e: *res){
         q += e.regis->emisor + " "+e.regis->receptor + " "+to_string(e.regis->monto) + " "+e.regis->fecha + "\n";
