@@ -136,6 +136,7 @@ Acerca de Max heap, es el índice que presenta una mayor mejora, de hasta 641% p
 ![Image text](https://github.com/utec-aed-2022-2/proyecto-equipo-4/blob/main/img/tablas.png)
 
  ## CONCLUSIONES
+ 
 - El uso de las estructuras de datos es importante en el desarrollo y programación, ya que permite tener una mejor organización de datos. De esta forma, se pueden diseñar soluciones de forma correcta y eficiente.
 
 - Existen estructuras de datos de carácter general que pueden tener varias aplicaciones. Aunque algunas tienen ventajas al realizar
@@ -143,5 +144,4 @@ ciertas operaciones o manejar tipos de datos específicos.
 
 - En el caso de la creación de una blockchain, es esencial manejar otro tipo de estructuras aparte de la cadena Hash. El uso de otro modelo de estructuras permite acceder i/o indexar la información sin la utilización de su configuración nativa, manteniendo el propósito inicial de esta distribución.
 
-- El uso de índices indicó una mejora considerable en la complejidad algorítmica de operaciones que usualmente se realizarían en una blockchain. Por lo que se pudo obtener solución a un problema concreto. 
-
+- El uso de índices indicó una mejora considerable en la complejidad algorítmica de operaciones que usualmente se realizarían en una blockchain. Por lo que se pudo obtener solución a un problema concreto.
