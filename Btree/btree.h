@@ -98,6 +98,13 @@ public:
         display_tree(root);
     }
 
+    template<typename T>
+    ForwardList<TK>* search_range(T start, T end){
+        ForwardList<TK>* res = new ForwardList<TK>();
+        _search_range(this->root, start, end, res);
+        cout << res->size() << endl;
+        return res;
+    }
     // liberar memoria
     ~BTree()
     {
@@ -106,6 +113,26 @@ public:
     }
 
 private:
+    template<typename T>
+    void _search_range(NodeB<TK>* node,T start, T end, ForwardList<TK>*& res){
+        int i;
+        for (i = 0; i < node->count; i++)
+        {
+            // se busca por la rama izquierda
+            if (node->keys[i] > end or node->keys[i] < start) {
+            }
+            else {
+                if (!node->leaf)
+                    _search_range(node->children[i], start, end, res);
+                // luego se concantena la key
+                res->push_front(node->keys[i]);
+            }
+        }
+        // al final, se recorre el ultimo hijo
+        if (!node->leaf)
+            res->push_front(node->keys[i]);
+    }
+
     string toString(NodeB<TK> *node, string sep)
     { // inorder
         if (node == nullptr)
@@ -146,10 +173,12 @@ private:
 
         // verificar si es llave repetida
         i = 0;
-        while (i < node->count && key > node->keys[i])
+        while (i < node->count && key.key > node->keys[i].key)
             i++;
-        if (i < node->count && node->keys[i] == key) {
-            node->keys[i].insert(key);
+        if (i < node->count && node->keys[i].key == key.key) {
+            for(auto _e: *key.values){
+                node->keys[i].insert(_e);
+            }
             return nullptr;
         }
         // es nodo hoja
