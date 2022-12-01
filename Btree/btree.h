@@ -119,18 +119,19 @@ private:
         for (i = 0; i < node->count; i++)
         {
             // se busca por la rama izquierda
-            if (node->keys[i] > end or node->keys[i] < start) {
-            }
-            else {
+                if (node->keys[i] < end and node->keys[i]>start) res->push_front(node->keys[i]);
                 if (!node->leaf)
                     _search_range(node->children[i], start, end, res);
                 // luego se concantena la key
-                res->push_front(node->keys[i]);
-            }
+
+
+            if (node->keys[i]> end) break;
         }
         // al final, se recorre el ultimo hijo
-        if (!node->leaf)
-            res->push_front(node->keys[i]);
+        if (!node->leaf) {
+            if (node->keys[i] < end and node->keys[i]>start)
+                res->push_front(node->keys[i]);
+        }
     }
 
     string toString(NodeB<TK> *node, string sep)
